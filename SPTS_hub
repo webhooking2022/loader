@@ -1,1990 +1,1995 @@
-repeat wait() until game.Players.LocalPlayer and game.Loaded:wait()
+pcall(function()
+    repeat wait() until game.Players.LocalPlayer and game.Loaded:wait()
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/webhooking2022/functions-library/main/.functions"))()
-repeat wait() until functions
-
-
-local keys = {
-	"vtin",
-	"samu",
-	"madruga"
-}
- 
- 
-
-function check(key)
-    if table.find(keys, key) then
-        return true 
-    else
-        return false
-    end
-end
-
-local sucessfully = false
-
-if isfile("key.txt") then
-    sucessfully = check(readfile("key.txt"))
-else
-    sucessfully = check(Key)
-    if sucessfully then
-        writefile("key.txt", Key)
-    end
-end
-
-repeat wait() until sucessfully
-functions.sendNotification("Sucesso", "Sucesso", 1)
--- Anti idle
-game.Players.LocalPlayer.Idled:Connect(function()
-    local VirtualUser = game:GetService("VirtualUser")
-    VirtualUser:CaptureController()
-    VirtualUser:ClickButton2(Vector2.new())
-end)
-
-local library = {}
-
-local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
-
-game.Players.LocalPlayer.OnTeleport:Connect(function(State)
-    if State == Enum.TeleportState.Started then
-        if queueteleport then
-            queueteleport([[
-            hookfunction(rconsoleinput, function()
-                return "Free menu"
-            end)
-            ]])
-            queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/webhooking2022/loader/main/SPTS_hub'))()")
-        end
-    end
-end)
-
-getgenv().toggles = {}
-getgenv().buttons = {}
-
-function fire_toggle(togglename, spec)
-    for i,v in pairs(toggles) do
-        if string.find(v[1]:lower(), togglename) then
-            v[2](spec)
-        end
-    end
-end
-function fire_button(togglename)
-    for i,v in pairs(toggles) do
-        if string.find(v[1]:lower(), togglename) then
-            v[2]()
-        end
-    end
-end
-
-
-function library:CreateWindow(text)
-    if old then old:Destroy() end
-	local ScreenGui = Instance.new("ScreenGui")
-    local Main = Instance.new("Frame")
-    local UICorner = Instance.new("UICorner")
-    local Titulo = Instance.new("TextLabel")
-    local Error = Instance.new("ImageButton")
-    local DropShadow = Instance.new("Frame")
-    local UICorner_2 = Instance.new("UICorner")
-    local DropShadow_2 = Instance.new("Frame")
-    local UICorner_3 = Instance.new("UICorner")
-    local DropShadow_3 = Instance.new("Frame")
-    local UICorner_4 = Instance.new("UICorner")
-    local DropShadow_4 = Instance.new("Frame")
-    local UICorner_5 = Instance.new("UICorner")
-    local TabButtons = Instance.new("Frame")
-    local UIListLayout = Instance.new("UIListLayout")
-    local Verde = Instance.new("Frame")
-    local UICorner_6 = Instance.new("UICorner")
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/webhooking2022/functions-library/main/.functions"))()
+    repeat wait() until functions
     
-
-
-    ScreenGui.Parent = game.CoreGui
-    getgenv().old = ScreenGui
-
-    Main.Name = "Main"
-    Main.Parent = ScreenGui
-    Main.BackgroundColor3 = Color3.fromRGB(33, 32, 32)
-    Main.BorderSizePixel = 0
-    Main.Position = UDim2.new(0.120192312, 0, 0.168750003, 0)
-    Main.Size = UDim2.new(0,0,0,0)
-    Main.ZIndex = 0
-    Main.Visible = false
-    Main.Active = true 
-    Main.Draggable = true 
-    Main.ClipsDescendants = true 
-    local Opened = true
-    game:GetService("UserInputService").InputBegan:Connect(function(input)
-        if input.KeyCode == Enum.KeyCode.F2 then
-            Opened = not Opened
-
-            if Opened then
-                Main:TweenSize(UDim2.new(0,0,0,0), "In", "Quart", 0.25, true)
-                Main.ClipsDescendants = true
-                wait(0.25)
-                Main.Visible = false
-            else
-                Main.Visible = true
-                Main:TweenSize(UDim2.new(0, 500, 0, 244), "Out", "Quart", 0.25, true)
-                wait(0.25)
-                Main.ClipsDescendants = false
-            end
-        end
-    end)
-    delay(1, function()
-
-        Main.Visible = true
-        Main:TweenSize(UDim2.new(0, 500, 0, 244), "InOut", "Quart", 0.25, true)
-        wait(0.25)
-        Main.ClipsDescendants = false
-    end)
-    UICorner.Parent = Main
-
-    Titulo.Name = "Titulo"
-    Titulo.Parent = Main
-    Titulo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    Titulo.BackgroundTransparency = 1.000
-    Titulo.Position = UDim2.new(0.0, 0, 0, 0)
-    Titulo.Size = UDim2.new(0, 232, 0, 16)
-    Titulo.Font = Enum.Font.Cartoon
-    Titulo.Text = " [🎃]  SPTS HUB"
-    Titulo.TextColor3 = Color3.fromRGB(255, 255, 255)
-    Titulo.TextScaled = true
-    Titulo.TextSize = 20.000
-    Titulo.TextWrapped = true
-    Titulo.TextXAlignment = Enum.TextXAlignment.Left
-
-    Error.Name = "Error"
-    Error.Parent = Main
-    Error.BackgroundTransparency = 1.000
-    Error.LayoutOrder = 13
-    Error.Position = UDim2.new(0.959999979, 0, 0, 0)
-    Error.Size = UDim2.new(0, 20, 0, 20)
-    Error.Image = "rbxassetid://3926305904"
-    Error.ImageRectOffset = Vector2.new(364, 124)
-    Error.ImageRectSize = Vector2.new(36, 36)
-
-    DropShadow.Name = "DropShadow"
-    DropShadow.Parent = Main
-    DropShadow.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-    DropShadow.BorderSizePixel = 0
-    DropShadow.Position = UDim2.new(0, 1, 0, 1)
-    DropShadow.Size = UDim2.new(1, 0, 1, 0)
-    DropShadow.ZIndex = -1
-
-    UICorner_2.Parent = DropShadow
-
-    DropShadow_2.Name = "DropShadow"
-    DropShadow_2.Parent = Main
-    DropShadow_2.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-    DropShadow_2.BorderSizePixel = 0
-    DropShadow_2.Position = UDim2.new(0, -1, 0, -1)
-    DropShadow_2.Size = UDim2.new(1, 0, 1, 0)
-    DropShadow_2.ZIndex = -1
-
-    UICorner_3.Parent = DropShadow_2
-
-    DropShadow_3.Name = "DropShadow"
-    DropShadow_3.Parent = Main
-    DropShadow_3.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-    DropShadow_3.BorderSizePixel = 0
-    DropShadow_3.Position = UDim2.new(0, 1, 0, -1)
-    DropShadow_3.Size = UDim2.new(1, 0, 1, 0)
-    DropShadow_3.ZIndex = -1
-
-    UICorner_4.Parent = DropShadow_3
-
-    DropShadow_4.Name = "DropShadow"
-    DropShadow_4.Parent = Main
-    DropShadow_4.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-    DropShadow_4.BorderSizePixel = 0
-    DropShadow_4.Position = UDim2.new(0, -1, 0, 1)
-    DropShadow_4.Size = UDim2.new(1, 0, 1, 0)
-    DropShadow_4.ZIndex = -1
-
-    UICorner_5.Parent = DropShadow_4
-
-    TabButtons.Name = "TabButtons"
-    TabButtons.Parent = Main
-    TabButtons.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    TabButtons.BackgroundTransparency = 1.000
-    TabButtons.BorderSizePixel = 0
-    TabButtons.Position = UDim2.new(0.0179999992, 0, 0.11065574, 0)
-    TabButtons.Size = UDim2.new(0, 99, 0, 209)
-
-    UIListLayout.Parent = TabButtons
-    UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-
-    Verde.Name = "Verde"
-    Verde.Parent = Main
-    Verde.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-    Verde.Position = UDim2.new(0.0250000004, -10, 0.112000003, 0)
-    Verde.Size = UDim2.new(0, 4, 0, 15)
-    Verde.BackgroundTransparency = 1
-
-    UICorner_6.Parent = Verde
-
     
-
+    local keys = {
+        "vtin",
+        "samu",
+        "madruga"
+    }
+     
+     
     
-        
-	
-	local EpicLibrary = {}
-
-	function EpicLibrary:CreateTab(text)
-        
-        local UIListLayout_2 = Instance.new("UIListLayout")
-
-		local other = Instance.new("Frame")
-        local Tab = Instance.new("ScrollingFrame")
-
-        other.Name = "other"
-        other.Parent = Main
-        other.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-        other.BackgroundTransparency = 1.000
-        other.ClipsDescendants = true
-        other.Visible = false
-        other.Position = UDim2.new(0.214000002, 0, 0.0819672123, 0)
-        other.Size = UDim2.new(0, 386, 0, 223)
-        function closeall()
-            for i,v in pairs(Main:GetChildren()) do
-                if v.Name == "other" then 
-                    v.Visible = false
-                end
-            end
-        end
-        Tab.Name = "Tab"
-        Tab.Parent = other
-        Tab.Active = true
-        Tab.BackgroundColor3 = Color3.fromRGB(100, 255, 255)
-        Tab.BackgroundTransparency = 1.000
-        Tab.BorderSizePixel = 0
-        Tab.ClipsDescendants = false
-        Tab.Position = UDim2.new(0.00843700394, 0, 0.0358744413, 0)
-        Tab.Size = UDim2.new(0, 382, 0, 208)
-        Tab.ScrollBarThickness = 8
-        Tab.AutomaticCanvasSize = Enum.AutomaticSize.Y
-
-
-
-
-        UIListLayout_2.Parent = Tab
-        UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
-        UIListLayout_2.Padding = UDim.new(0, 5)
-
-
-        local TextButton = Instance.new("TextButton")
-        local UICorner = Instance.new("UICorner")
-
-
-        TextButton.Parent = TabButtons
-        TextButton.BackgroundColor3 = Color3.fromRGB(39, 39, 39)
-        TextButton.BackgroundTransparency = 1.000
-        TextButton.Size = UDim2.new(0, 99, 0, 16)
-        TextButton.Font = Enum.Font.Arial
-        TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-        TextButton.TextSize = 14.000
-        TextButton.Text = text
-        TextButton.TextXAlignment = Enum.TextXAlignment.Left
-        local your = pos 
-        TextButton.MouseButton1Click:Connect(function()
-            closeall()
-            other.Visible = true
-        end)
-
-
-
-
-        UICorner.Parent = TextButton
-		local ButtonsONTab = {}
-		
-		function ButtonsONTab:CreateTextBox(text, callback)
-            text = "   "..text .. '  [Digite aqui]'
-			local TextButton = Instance.new("TextBox")
-            local UICorner = Instance.new("UICorner")
-            local DropShadow = Instance.new("Frame")
-            local UICorner_2 = Instance.new("UICorner")
-            local DropShadow_2 = Instance.new("Frame")
-            local UICorner_3 = Instance.new("UICorner")
-            local DropShadow_3 = Instance.new("Frame")
-            local UICorner_4 = Instance.new("UICorner")
-            local DropShadow_4 = Instance.new("Frame")
-            local UICorner_5 = Instance.new("UICorner")
-            local fingerprint = Instance.new("ImageButton")
-
-
-
-            TextButton.Name = "TextButton"
-            TextButton.Parent = Tab
-            TextButton.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
-            TextButton.BorderSizePixel = 0
-            TextButton.Size = UDim2.new(0, 372, 0, 23)
-            TextButton.Font = Enum.Font.SourceSans
-            TextButton.Text = text
-            TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-            TextButton.TextSize = 14.000
-            TextButton.TextXAlignment = Enum.TextXAlignment.Left
-
-            UICorner.Parent = TextButton
-
-            DropShadow.Name = "DropShadow"
-            DropShadow.Parent = TextButton
-            DropShadow.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
-            DropShadow.BorderSizePixel = 0
-            DropShadow.Position = UDim2.new(0, 1, 0, 1)
-            DropShadow.Size = UDim2.new(1, 0, 1, 0)
-            DropShadow.ZIndex = 0
-
-            UICorner_2.Parent = DropShadow
-
-            DropShadow_2.Name = "DropShadow"
-            DropShadow_2.Parent = TextButton
-            DropShadow_2.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
-            DropShadow_2.BorderSizePixel = 0
-            DropShadow_2.Position = UDim2.new(0, -1, 0, -1)
-            DropShadow_2.Size = UDim2.new(1, 0, 1, 0)
-            DropShadow_2.ZIndex = 0
-
-            UICorner_3.Parent = DropShadow_2
-
-            DropShadow_3.Name = "DropShadow"
-            DropShadow_3.Parent = TextButton
-            DropShadow_3.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
-            DropShadow_3.BorderSizePixel = 0
-            DropShadow_3.Position = UDim2.new(0, 1, 0, -1)
-            DropShadow_3.Size = UDim2.new(1, 0, 1, 0)
-            DropShadow_3.ZIndex = 0
-
-            UICorner_4.Parent = DropShadow_3
-
-            DropShadow_4.Name = "DropShadow"
-            DropShadow_4.Parent = TextButton
-            DropShadow_4.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
-            DropShadow_4.BorderSizePixel = 0
-            DropShadow_4.Position = UDim2.new(0, -1, 0, 1)
-            DropShadow_4.Size = UDim2.new(1, 0, 1, 0)
-            DropShadow_4.ZIndex = 0
-
-            UICorner_5.Parent = DropShadow_4
-
-            fingerprint.Name = "fingerprint"
-            fingerprint.Parent = TextButton
-            fingerprint.BackgroundTransparency = 1.000
-            fingerprint.LayoutOrder = 11
-            fingerprint.Position = UDim2.new(0.90053761, 0, -1.49011612e-08, 0)
-            fingerprint.Size = UDim2.new(0, 21, 0, 21)
-            fingerprint.ZIndex = 2
-            fingerprint.Image = "rbxassetid://3926305904"
-            fingerprint.ImageColor3 = Color3.fromRGB(255, 0, 0)
-            fingerprint.ImageRectOffset = Vector2.new(164, 844)
-            fingerprint.ImageRectSize = Vector2.new(36, 36)
-
-            TextButton.FocusLost:Connect(function(enter)
-                if enter then
-                    pcall(callback, TextButton.Text)
-                    task.wait()
-                    TextButton.Text = text
-                end
-            end)
-		end
-		function ButtonsONTab:CreateButton(text, callback)
-            text = "   " .. text
-			local TextButton = Instance.new("TextButton")
-            local UICorner = Instance.new("UICorner")
-            local DropShadow = Instance.new("Frame")
-            local UICorner_2 = Instance.new("UICorner")
-            local DropShadow_2 = Instance.new("Frame")
-            local UICorner_3 = Instance.new("UICorner")
-            local DropShadow_3 = Instance.new("Frame")
-            local UICorner_4 = Instance.new("UICorner")
-            local DropShadow_4 = Instance.new("Frame")
-            local UICorner_5 = Instance.new("UICorner")
-            local fingerprint = Instance.new("ImageButton")
-
-
-
-            TextButton.Parent = Tab
-            TextButton.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
-            TextButton.BorderSizePixel = 0
-            TextButton.Size = UDim2.new(0, 372, 0, 22)
-            TextButton.Font = Enum.Font.SourceSans
-            TextButton.Text = text
-            TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-            TextButton.TextSize = 14.000
-            TextButton.TextXAlignment = Enum.TextXAlignment.Left
-            TextButton.MouseButton1Click:Connect(function()
-                pcall(callback)
-            end)
-
-            buttons[#buttons + 1] = {text, callback}
-            UICorner.Parent = TextButton
-
-            DropShadow.Name = "DropShadow"
-            DropShadow.Parent = TextButton
-            DropShadow.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
-            DropShadow.BorderSizePixel = 0
-            DropShadow.Position = UDim2.new(0, 1, 0, 1)
-            DropShadow.Size = UDim2.new(1, 0, 1, 0)
-            DropShadow.ZIndex = 0
-
-            UICorner_2.Parent = DropShadow
-
-            DropShadow_2.Name = "DropShadow"
-            DropShadow_2.Parent = TextButton
-            DropShadow_2.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
-            DropShadow_2.BorderSizePixel = 0
-            DropShadow_2.Position = UDim2.new(0, -1, 0, -1)
-            DropShadow_2.Size = UDim2.new(1, 0, 1, 0)
-            DropShadow_2.ZIndex = 0
-
-            UICorner_3.Parent = DropShadow_2
-
-            DropShadow_3.Name = "DropShadow"
-            DropShadow_3.Parent = TextButton
-            DropShadow_3.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
-            DropShadow_3.BorderSizePixel = 0
-            DropShadow_3.Position = UDim2.new(0, 1, 0, -1)
-            DropShadow_3.Size = UDim2.new(1, 0, 1, 0)
-            DropShadow_3.ZIndex = 0
-
-            UICorner_4.Parent = DropShadow_3
-
-            DropShadow_4.Name = "DropShadow"
-            DropShadow_4.Parent = TextButton
-            DropShadow_4.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
-            DropShadow_4.BorderSizePixel = 0
-            DropShadow_4.Position = UDim2.new(0, -1, 0, 1)
-            DropShadow_4.Size = UDim2.new(1, 0, 1, 0)
-            DropShadow_4.ZIndex = 0
-
-            UICorner_5.Parent = DropShadow_4
-
-            fingerprint.Name = "fingerprint"
-            fingerprint.Parent = TextButton
-            fingerprint.BackgroundTransparency = 1.000
-            fingerprint.LayoutOrder = 11
-            fingerprint.Position = UDim2.new(0.90053761, 0, -1.49011612e-08, 0)
-            fingerprint.Size = UDim2.new(0, 21, 0, 21)
-            fingerprint.ZIndex = 2
-            fingerprint.Image = "rbxassetid://3926305904"
-            fingerprint.ImageColor3 = Color3.fromRGB(255, 0, 0)
-            fingerprint.ImageRectOffset = Vector2.new(164, 844)
-            fingerprint.ImageRectSize = Vector2.new(36, 36)
-		end
-		function ButtonsONTab:CreateToggle(text, callback)
-            text = "   " .. text 
-            local toggled = false
-			local TextButton = Instance.new("TextButton")
-            local UICorner = Instance.new("UICorner")
-            local DropShadow = Instance.new("Frame")
-            local UICorner_2 = Instance.new("UICorner")
-            local DropShadow_2 = Instance.new("Frame")
-            local UICorner_3 = Instance.new("UICorner")
-            local DropShadow_3 = Instance.new("Frame")
-            local UICorner_4 = Instance.new("UICorner")
-            local DropShadow_4 = Instance.new("Frame")
-            local UICorner_5 = Instance.new("UICorner")
-            local Frame = Instance.new("Frame")
-            local UICorner_6 = Instance.new("UICorner")
-            local DropShadow_5 = Instance.new("Frame")
-            local UICorner_7 = Instance.new("UICorner")
-            local DropShadow_6 = Instance.new("Frame")
-            local UICorner_8 = Instance.new("UICorner")
-            local DropShadow_7 = Instance.new("Frame")
-            local UICorner_9 = Instance.new("UICorner")
-            local DropShadow_8 = Instance.new("Frame")
-            local UICorner_10 = Instance.new("UICorner")
-
-
-            TextButton.Parent = Tab
-            TextButton.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
-            TextButton.BorderSizePixel = 0
-            TextButton.Size = UDim2.new(0, 372, 0, 23)
-            TextButton.Font = Enum.Font.SourceSans
-            TextButton.Text = text
-            TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-            TextButton.TextSize = 14.000
-            TextButton.TextXAlignment = Enum.TextXAlignment.Left
-            local function fire(spect)
-                toggled = spect or not toggled
-                
-                if toggled then
-
-                    game:GetService("TweenService"):Create(Frame, TweenInfo.new(0.3), {BackgroundColor3 = Color3.fromRGB(255, 0, 0)}):Play()
-                else
-                    game:GetService("TweenService"):Create(Frame, TweenInfo.new(0.3), {BackgroundColor3 = Color3.fromRGB(33, 32, 32)}):Play()
-
-                end
-                
-                pcall(callback, toggled)
-            end
-
-            TextButton.MouseButton1Click:Connect(function()
-
-                fire()
-                
-            end)
-
-            toggles[#toggles + 1] = {text, fire}
-
-            UICorner.Parent = TextButton
-
-            DropShadow.Name = "DropShadow"
-            DropShadow.Parent = TextButton
-            DropShadow.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
-            DropShadow.BorderSizePixel = 0
-            DropShadow.Position = UDim2.new(0, 1, 0, 1)
-            DropShadow.Size = UDim2.new(1, 0, 1, 0)
-            DropShadow.ZIndex = 0
-
-            UICorner_2.Parent = DropShadow
-
-            DropShadow_2.Name = "DropShadow"
-            DropShadow_2.Parent = TextButton
-            DropShadow_2.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
-            DropShadow_2.BorderSizePixel = 0
-            DropShadow_2.Position = UDim2.new(0, -1, 0, -1)
-            DropShadow_2.Size = UDim2.new(1, 0, 1, 0)
-            DropShadow_2.ZIndex = 0
-
-            UICorner_3.Parent = DropShadow_2
-
-            DropShadow_3.Name = "DropShadow"
-            DropShadow_3.Parent = TextButton
-            DropShadow_3.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
-            DropShadow_3.BorderSizePixel = 0
-            DropShadow_3.Position = UDim2.new(0, 1, 0, -1)
-            DropShadow_3.Size = UDim2.new(1, 0, 1, 0)
-            DropShadow_3.ZIndex = 0
-
-            UICorner_4.Parent = DropShadow_3
-
-            DropShadow_4.Name = "DropShadow"
-            DropShadow_4.Parent = TextButton
-            DropShadow_4.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
-            DropShadow_4.BorderSizePixel = 0
-            DropShadow_4.Position = UDim2.new(0, -1, 0, 1)
-            DropShadow_4.Size = UDim2.new(1, 0, 1, 0)
-            DropShadow_4.ZIndex = 0
-
-            UICorner_5.Parent = DropShadow_4
-
-            Frame.Parent = TextButton
-            Frame.AnchorPoint = Vector2.new(0.5, 0.5)
-            Frame.BackgroundColor3 = Color3.fromRGB(33, 32, 32)
-            Frame.BorderSizePixel = 0
-            Frame.Position = UDim2.new(0.927999973, 0, 0.451521754, 1)
-            Frame.Size = UDim2.new(0, 19, 0, 19)
-            Frame.ZIndex = 2
-
-            UICorner_6.CornerRadius = UDim.new(0, 4)
-            UICorner_6.Parent = Frame
-
-            DropShadow_5.Name = "DropShadow"
-            DropShadow_5.Parent = Frame
-            DropShadow_5.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
-            DropShadow_5.BorderSizePixel = 0
-            DropShadow_5.Position = UDim2.new(0, -1, 0, 1)
-            DropShadow_5.Size = UDim2.new(1, 0, 1, 0)
-
-            UICorner_7.CornerRadius = UDim.new(0, 4)
-            UICorner_7.Parent = DropShadow_5
-
-            DropShadow_6.Name = "DropShadow"
-            DropShadow_6.Parent = Frame
-            DropShadow_6.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
-            DropShadow_6.BorderSizePixel = 0
-            DropShadow_6.Position = UDim2.new(0, -1, 0, -1)
-            DropShadow_6.Size = UDim2.new(1, 0, 1, 0)
-
-            UICorner_8.CornerRadius = UDim.new(0, 4)
-            UICorner_8.Parent = DropShadow_6
-
-            DropShadow_7.Name = "DropShadow"
-            DropShadow_7.Parent = Frame
-            DropShadow_7.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
-            DropShadow_7.BorderSizePixel = 0
-            DropShadow_7.Position = UDim2.new(0, 1, 0, -1)
-            DropShadow_7.Size = UDim2.new(1, 0, 1, 0)
-
-            UICorner_9.CornerRadius = UDim.new(0, 4)
-            UICorner_9.Parent = DropShadow_7
-
-            DropShadow_8.Name = "DropShadow"
-            DropShadow_8.Parent = Frame
-            DropShadow_8.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
-            DropShadow_8.BorderSizePixel = 0
-            DropShadow_8.Position = UDim2.new(0, 1, 0, 1)
-            DropShadow_8.Size = UDim2.new(1, 0, 1, 0)
-
-            UICorner_10.CornerRadius = UDim.new(0, 4)
-            UICorner_10.Parent = DropShadow_8
-
-            return fire
-		end
-		return ButtonsONTab
-	end
-	
-	return EpicLibrary
-end
-
-
-
-menu = library
-local speaker = game.Players.LocalPlayer
-menu = menu:CreateWindow("SPTS hub")
-
-game:GetService("ReplicatedStorage").RemoteEvent:FireServer({[1] = "Respawn"})
-
-
-
-spawn(function()
-    local speaker = game.Players.LocalPlayer
-
-    while true and task.wait() do
-        pcall(function()
-            if game.Players.LocalPlayer.PlayerGui.ScreenGui.Enabled==false and game.Lighting.Blur.Enabled == true and (speaker.Character and speaker.Character:FindFirstChild("Humanoid")).Health > 0 then
-                game.Lighting.Blur.Enabled = false
-                game.Players.LocalPlayer.PlayerGui.IntroGui.Enabled = false
-                game.Players.LocalPlayer.PlayerGui.ScreenGui.Enabled = true
-            end
-        end)
-    end
-end)
-local farms = menu:CreateTab("Farms")
-
-local teleports = menu:CreateTab("Teleports")
-
-
-
-
-local aimbot = menu:CreateTab("Target")
-
-local esp = menu:CreateTab"Esp"
-
-local auto_refresh = menu:CreateTab("Auto refresh")
-local clicker = {}
-function getRoot(plr)
-    plr = plr or game.Players.LocalPlayer
-
-    local sucess, root = pcall(function()
-        return plr.Character.HumanoidRootPart
-    end)
-    if sucess then return root end
-end
-function getHumanoid(plr)
-    plr = plr or game.Players.LocalPlayer
-
-    local sucess, Humanoid = pcall(function()
-        return plr.Character.Humanoid
-    end)
-    if sucess then return Humanoid end
-end
-function round(num, numDecimalPlaces)
-	local mult = 10^(numDecimalPlaces or 0)
-	return math.floor(num * mult + 0.5) / mult
-end
-		
-function converttoletter(num)
-	if num / 1e21 >=1 then
-		newnum = num / 1e21
-		return round(newnum, 6).. "Sx"
-	elseif num / 1e18 >=1 then
-		newnum = num / 1e18
-		return round(newnum, 6).. "Qi"
-	elseif num / 1e15 >=1 then
-		newnum = num / 1e15
-		return round(newnum, 6).. "Qa"
-	elseif num / 1e12 >=1 then
-		newnum = num / 1e12
-		return round(newnum, 6).. "T"
-	elseif num / 1e09 >=1 then
-		newnum = num / 1e09
-		return round(newnum, 6).. "B"
-	elseif num / 1e06 >=1 then
-		newnum = num / 1e06
-		return round(newnum, 6).. "M"
-	elseif num / 1e03 >=1 then
-		newnum = num / 1e03
-		return round(newnum, 6).. "K"
-	else return num
-	end
-end
-
-
-Translate = function(num)
-    return converttoletter(num)
-end
-
-function AutoClick(bool)
-    if bool then
-        clicker[#clicker + 1] = game:GetService("RunService").Stepped:Connect(function()
-            for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-                if v:IsA("Tool") then
-                    v:Activate()
-                end
-            end
-        end)
-    else
-        if clicker then
-            for i,v in pairs(clicker) do
-                v:Disconnect()
-            end
-        end
-    end
-    
-end
-
-local Stats = {
-    First = game:GetService("Players").LocalPlayer.PrivateStats.FistStrength;
-    Body = game:GetService("Players").LocalPlayer.PrivateStats.BodyToughness;
-    Psy = game:GetService("Players").LocalPlayer.PrivateStats.PsychicPower;
-}
-
-function Equip(name)
-    pcall(function()
-        for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-            if v.Name == name then
-                v.Parent = game.Players.LocalPlayer.Character
-            end
-        end
-    end)
-end
-
-function NewFarm(farm_name, toolname, cframes)
-    
-    local oldpos
-    local myfarm
-    local fire = farms:CreateToggle(farm_name, function(bool)
-        pcall(function()
-            if isfile(farm_name..'.txt') and not bool then
-                delfile(farm_name..'.txt')
-            elseif bool then
-                writefile(farm_name..'.txt', "")
-            end
-        end)
-        AutoClick(bool)
-        if bool then
-            oldpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-            myfarm = game:GetService("RunService").Heartbeat:Connect(function()
-                local pos
-
-                for i,v in pairs(cframes) do
-                    if v.stats.Value >= v.number  then
-                        pos = v.cframe
-                        if getgenv().safefarm == true then
-                            pos = pos + Vector3.new(0, -10, 0)
-                        end
-                    end
-                end
-
-                Equip(toolname)
-                
-                
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
-            end)
+    function check(key)
+        if table.find(keys, key) then
+            return true 
         else
-            pcall(function()
-                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-                    if v:IsA("Tool") then
-                        v.Parent = game.Players.LocalPlayer.Backpack
-                    end
-                end
-            end)
-            myfarm:Disconnect()
-            for i = 1,10 do
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = oldpos
-                wait()
-                game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+            return false
+        end
+    end
+    
+    local sucessfully = false
+    
+    if isfile("key.txt") then
+        sucessfully = check(readfile("key.txt"))
+    else
+        sucessfully = check(Key)
+        if sucessfully then
+            writefile("key.txt", Key)
+        end
+    end
+    
+    repeat wait() until sucessfully
+    functions.sendNotification("Sucesso", "Sucesso", 1)
+    -- Anti idle
+    pcall(function()
+        game.Players.LocalPlayer.Idled:Connect(function()
+            local VirtualUser = game:GetService("VirtualUser")
+            VirtualUser:CaptureController()
+            VirtualUser:ClickButton2(Vector2.new())
+        end)
+    end)
+    
+    local library = {}
+    
+    local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
+    
+    game.Players.LocalPlayer.OnTeleport:Connect(function(State)
+        if State == Enum.TeleportState.Started then
+            if queueteleport then
+                queueteleport([[
+                hookfunction(rconsoleinput, function()
+                    return "Free menu"
+                end)
+                ]])
+                queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/webhooking2022/loader/main/SPTS_hub'))()")
             end
         end
     end)
-
-    delay(4, function()
-        local AnyFarm = false
-        if isfile(farm_name..".txt") then
-            AnyFarm= true 
-            pcall(fire)
-        end
     
-        if AnyFarm then
-            fire_toggle("auto respawn")
+    getgenv().toggles = {}
+    getgenv().buttons = {}
+    
+    function fire_toggle(togglename, spec)
+        for i,v in pairs(toggles) do
+            if string.find(v[1]:lower(), togglename) then
+                v[2](spec)
+            end
         end
-    end)
-end
-
-
-local autorespawn = false
-function Refresh()
+    end
+    function fire_button(togglename)
+        for i,v in pairs(toggles) do
+            if string.find(v[1]:lower(), togglename) then
+                v[2]()
+            end
+        end
+    end
+    
+    
+    function library:CreateWindow(text)
+        if old then old:Destroy() end
+        local ScreenGui = Instance.new("ScreenGui")
+        local Main = Instance.new("Frame")
+        local UICorner = Instance.new("UICorner")
+        local Titulo = Instance.new("TextLabel")
+        local Error = Instance.new("ImageButton")
+        local DropShadow = Instance.new("Frame")
+        local UICorner_2 = Instance.new("UICorner")
+        local DropShadow_2 = Instance.new("Frame")
+        local UICorner_3 = Instance.new("UICorner")
+        local DropShadow_3 = Instance.new("Frame")
+        local UICorner_4 = Instance.new("UICorner")
+        local DropShadow_4 = Instance.new("Frame")
+        local UICorner_5 = Instance.new("UICorner")
+        local TabButtons = Instance.new("Frame")
+        local UIListLayout = Instance.new("UIListLayout")
+        local Verde = Instance.new("Frame")
+        local UICorner_6 = Instance.new("UICorner")
+        
+    
+    
+        ScreenGui.Parent = game.CoreGui
+        getgenv().old = ScreenGui
+    
+        Main.Name = "Main"
+        Main.Parent = ScreenGui
+        Main.BackgroundColor3 = Color3.fromRGB(33, 32, 32)
+        Main.BorderSizePixel = 0
+        Main.Position = UDim2.new(0.120192312, 0, 0.168750003, 0)
+        Main.Size = UDim2.new(0,0,0,0)
+        Main.ZIndex = 0
+        Main.Visible = false
+        Main.Active = true 
+        Main.Draggable = true 
+        Main.ClipsDescendants = true 
+        local Opened = true
+        game:GetService("UserInputService").InputBegan:Connect(function(input)
+            if input.KeyCode == Enum.KeyCode.F2 then
+                Opened = not Opened
+    
+                if Opened then
+                    Main:TweenSize(UDim2.new(0,0,0,0), "In", "Quart", 0.25, true)
+                    Main.ClipsDescendants = true
+                    wait(0.25)
+                    Main.Visible = false
+                else
+                    Main.Visible = true
+                    Main:TweenSize(UDim2.new(0, 500, 0, 244), "Out", "Quart", 0.25, true)
+                    wait(0.25)
+                    Main.ClipsDescendants = false
+                end
+            end
+        end)
+        delay(1, function()
+    
+            Main.Visible = true
+            Main:TweenSize(UDim2.new(0, 500, 0, 244), "InOut", "Quart", 0.25, true)
+            wait(0.25)
+            Main.ClipsDescendants = false
+        end)
+        UICorner.Parent = Main
+    
+        Titulo.Name = "Titulo"
+        Titulo.Parent = Main
+        Titulo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        Titulo.BackgroundTransparency = 1.000
+        Titulo.Position = UDim2.new(0.0, 0, 0, 0)
+        Titulo.Size = UDim2.new(0, 232, 0, 16)
+        Titulo.Font = Enum.Font.Cartoon
+        Titulo.Text = " [🎃]  SPTS HUB"
+        Titulo.TextColor3 = Color3.fromRGB(255, 255, 255)
+        Titulo.TextScaled = true
+        Titulo.TextSize = 20.000
+        Titulo.TextWrapped = true
+        Titulo.TextXAlignment = Enum.TextXAlignment.Left
+    
+        Error.Name = "Error"
+        Error.Parent = Main
+        Error.BackgroundTransparency = 1.000
+        Error.LayoutOrder = 13
+        Error.Position = UDim2.new(0.959999979, 0, 0, 0)
+        Error.Size = UDim2.new(0, 20, 0, 20)
+        Error.Image = "rbxassetid://3926305904"
+        Error.ImageRectOffset = Vector2.new(364, 124)
+        Error.ImageRectSize = Vector2.new(36, 36)
+    
+        DropShadow.Name = "DropShadow"
+        DropShadow.Parent = Main
+        DropShadow.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+        DropShadow.BorderSizePixel = 0
+        DropShadow.Position = UDim2.new(0, 1, 0, 1)
+        DropShadow.Size = UDim2.new(1, 0, 1, 0)
+        DropShadow.ZIndex = -1
+    
+        UICorner_2.Parent = DropShadow
+    
+        DropShadow_2.Name = "DropShadow"
+        DropShadow_2.Parent = Main
+        DropShadow_2.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+        DropShadow_2.BorderSizePixel = 0
+        DropShadow_2.Position = UDim2.new(0, -1, 0, -1)
+        DropShadow_2.Size = UDim2.new(1, 0, 1, 0)
+        DropShadow_2.ZIndex = -1
+    
+        UICorner_3.Parent = DropShadow_2
+    
+        DropShadow_3.Name = "DropShadow"
+        DropShadow_3.Parent = Main
+        DropShadow_3.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+        DropShadow_3.BorderSizePixel = 0
+        DropShadow_3.Position = UDim2.new(0, 1, 0, -1)
+        DropShadow_3.Size = UDim2.new(1, 0, 1, 0)
+        DropShadow_3.ZIndex = -1
+    
+        UICorner_4.Parent = DropShadow_3
+    
+        DropShadow_4.Name = "DropShadow"
+        DropShadow_4.Parent = Main
+        DropShadow_4.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+        DropShadow_4.BorderSizePixel = 0
+        DropShadow_4.Position = UDim2.new(0, -1, 0, 1)
+        DropShadow_4.Size = UDim2.new(1, 0, 1, 0)
+        DropShadow_4.ZIndex = -1
+    
+        UICorner_5.Parent = DropShadow_4
+    
+        TabButtons.Name = "TabButtons"
+        TabButtons.Parent = Main
+        TabButtons.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        TabButtons.BackgroundTransparency = 1.000
+        TabButtons.BorderSizePixel = 0
+        TabButtons.Position = UDim2.new(0.0179999992, 0, 0.11065574, 0)
+        TabButtons.Size = UDim2.new(0, 99, 0, 209)
+    
+        UIListLayout.Parent = TabButtons
+        UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    
+        Verde.Name = "Verde"
+        Verde.Parent = Main
+        Verde.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+        Verde.Position = UDim2.new(0.0250000004, -10, 0.112000003, 0)
+        Verde.Size = UDim2.new(0, 4, 0, 15)
+        Verde.BackgroundTransparency = 1
+    
+        UICorner_6.Parent = Verde
+    
+        
+    
+        
+            
+        
+        local EpicLibrary = {}
+    
+        function EpicLibrary:CreateTab(text)
+            
+            local UIListLayout_2 = Instance.new("UIListLayout")
+    
+            local other = Instance.new("Frame")
+            local Tab = Instance.new("ScrollingFrame")
+    
+            other.Name = "other"
+            other.Parent = Main
+            other.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            other.BackgroundTransparency = 1.000
+            other.ClipsDescendants = true
+            other.Visible = false
+            other.Position = UDim2.new(0.214000002, 0, 0.0819672123, 0)
+            other.Size = UDim2.new(0, 386, 0, 223)
+            function closeall()
+                for i,v in pairs(Main:GetChildren()) do
+                    if v.Name == "other" then 
+                        v.Visible = false
+                    end
+                end
+            end
+            Tab.Name = "Tab"
+            Tab.Parent = other
+            Tab.Active = true
+            Tab.BackgroundColor3 = Color3.fromRGB(100, 255, 255)
+            Tab.BackgroundTransparency = 1.000
+            Tab.BorderSizePixel = 0
+            Tab.ClipsDescendants = false
+            Tab.Position = UDim2.new(0.00843700394, 0, 0.0358744413, 0)
+            Tab.Size = UDim2.new(0, 382, 0, 208)
+            Tab.ScrollBarThickness = 8
+            Tab.AutomaticCanvasSize = Enum.AutomaticSize.Y
+    
+    
+    
+    
+            UIListLayout_2.Parent = Tab
+            UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
+            UIListLayout_2.Padding = UDim.new(0, 5)
+    
+    
+            local TextButton = Instance.new("TextButton")
+            local UICorner = Instance.new("UICorner")
+    
+    
+            TextButton.Parent = TabButtons
+            TextButton.BackgroundColor3 = Color3.fromRGB(39, 39, 39)
+            TextButton.BackgroundTransparency = 1.000
+            TextButton.Size = UDim2.new(0, 99, 0, 16)
+            TextButton.Font = Enum.Font.Arial
+            TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+            TextButton.TextSize = 14.000
+            TextButton.Text = text
+            TextButton.TextXAlignment = Enum.TextXAlignment.Left
+            local your = pos 
+            TextButton.MouseButton1Click:Connect(function()
+                closeall()
+                other.Visible = true
+            end)
+    
+    
+    
+    
+            UICorner.Parent = TextButton
+            local ButtonsONTab = {}
+            
+            function ButtonsONTab:CreateTextBox(text, callback)
+                text = "   "..text .. '  [Digite aqui]'
+                local TextButton = Instance.new("TextBox")
+                local UICorner = Instance.new("UICorner")
+                local DropShadow = Instance.new("Frame")
+                local UICorner_2 = Instance.new("UICorner")
+                local DropShadow_2 = Instance.new("Frame")
+                local UICorner_3 = Instance.new("UICorner")
+                local DropShadow_3 = Instance.new("Frame")
+                local UICorner_4 = Instance.new("UICorner")
+                local DropShadow_4 = Instance.new("Frame")
+                local UICorner_5 = Instance.new("UICorner")
+                local fingerprint = Instance.new("ImageButton")
+    
+    
+    
+                TextButton.Name = "TextButton"
+                TextButton.Parent = Tab
+                TextButton.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
+                TextButton.BorderSizePixel = 0
+                TextButton.Size = UDim2.new(0, 372, 0, 23)
+                TextButton.Font = Enum.Font.SourceSans
+                TextButton.Text = text
+                TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+                TextButton.TextSize = 14.000
+                TextButton.TextXAlignment = Enum.TextXAlignment.Left
+    
+                UICorner.Parent = TextButton
+    
+                DropShadow.Name = "DropShadow"
+                DropShadow.Parent = TextButton
+                DropShadow.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
+                DropShadow.BorderSizePixel = 0
+                DropShadow.Position = UDim2.new(0, 1, 0, 1)
+                DropShadow.Size = UDim2.new(1, 0, 1, 0)
+                DropShadow.ZIndex = 0
+    
+                UICorner_2.Parent = DropShadow
+    
+                DropShadow_2.Name = "DropShadow"
+                DropShadow_2.Parent = TextButton
+                DropShadow_2.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
+                DropShadow_2.BorderSizePixel = 0
+                DropShadow_2.Position = UDim2.new(0, -1, 0, -1)
+                DropShadow_2.Size = UDim2.new(1, 0, 1, 0)
+                DropShadow_2.ZIndex = 0
+    
+                UICorner_3.Parent = DropShadow_2
+    
+                DropShadow_3.Name = "DropShadow"
+                DropShadow_3.Parent = TextButton
+                DropShadow_3.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
+                DropShadow_3.BorderSizePixel = 0
+                DropShadow_3.Position = UDim2.new(0, 1, 0, -1)
+                DropShadow_3.Size = UDim2.new(1, 0, 1, 0)
+                DropShadow_3.ZIndex = 0
+    
+                UICorner_4.Parent = DropShadow_3
+    
+                DropShadow_4.Name = "DropShadow"
+                DropShadow_4.Parent = TextButton
+                DropShadow_4.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
+                DropShadow_4.BorderSizePixel = 0
+                DropShadow_4.Position = UDim2.new(0, -1, 0, 1)
+                DropShadow_4.Size = UDim2.new(1, 0, 1, 0)
+                DropShadow_4.ZIndex = 0
+    
+                UICorner_5.Parent = DropShadow_4
+    
+                fingerprint.Name = "fingerprint"
+                fingerprint.Parent = TextButton
+                fingerprint.BackgroundTransparency = 1.000
+                fingerprint.LayoutOrder = 11
+                fingerprint.Position = UDim2.new(0.90053761, 0, -1.49011612e-08, 0)
+                fingerprint.Size = UDim2.new(0, 21, 0, 21)
+                fingerprint.ZIndex = 2
+                fingerprint.Image = "rbxassetid://3926305904"
+                fingerprint.ImageColor3 = Color3.fromRGB(255, 0, 0)
+                fingerprint.ImageRectOffset = Vector2.new(164, 844)
+                fingerprint.ImageRectSize = Vector2.new(36, 36)
+    
+                TextButton.FocusLost:Connect(function(enter)
+                    if enter then
+                        pcall(callback, TextButton.Text)
+                        task.wait()
+                        TextButton.Text = text
+                    end
+                end)
+            end
+            function ButtonsONTab:CreateButton(text, callback)
+                text = "   " .. text
+                local TextButton = Instance.new("TextButton")
+                local UICorner = Instance.new("UICorner")
+                local DropShadow = Instance.new("Frame")
+                local UICorner_2 = Instance.new("UICorner")
+                local DropShadow_2 = Instance.new("Frame")
+                local UICorner_3 = Instance.new("UICorner")
+                local DropShadow_3 = Instance.new("Frame")
+                local UICorner_4 = Instance.new("UICorner")
+                local DropShadow_4 = Instance.new("Frame")
+                local UICorner_5 = Instance.new("UICorner")
+                local fingerprint = Instance.new("ImageButton")
+    
+    
+    
+                TextButton.Parent = Tab
+                TextButton.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
+                TextButton.BorderSizePixel = 0
+                TextButton.Size = UDim2.new(0, 372, 0, 22)
+                TextButton.Font = Enum.Font.SourceSans
+                TextButton.Text = text
+                TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+                TextButton.TextSize = 14.000
+                TextButton.TextXAlignment = Enum.TextXAlignment.Left
+                TextButton.MouseButton1Click:Connect(function()
+                    pcall(callback)
+                end)
+    
+                buttons[#buttons + 1] = {text, callback}
+                UICorner.Parent = TextButton
+    
+                DropShadow.Name = "DropShadow"
+                DropShadow.Parent = TextButton
+                DropShadow.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
+                DropShadow.BorderSizePixel = 0
+                DropShadow.Position = UDim2.new(0, 1, 0, 1)
+                DropShadow.Size = UDim2.new(1, 0, 1, 0)
+                DropShadow.ZIndex = 0
+    
+                UICorner_2.Parent = DropShadow
+    
+                DropShadow_2.Name = "DropShadow"
+                DropShadow_2.Parent = TextButton
+                DropShadow_2.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
+                DropShadow_2.BorderSizePixel = 0
+                DropShadow_2.Position = UDim2.new(0, -1, 0, -1)
+                DropShadow_2.Size = UDim2.new(1, 0, 1, 0)
+                DropShadow_2.ZIndex = 0
+    
+                UICorner_3.Parent = DropShadow_2
+    
+                DropShadow_3.Name = "DropShadow"
+                DropShadow_3.Parent = TextButton
+                DropShadow_3.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
+                DropShadow_3.BorderSizePixel = 0
+                DropShadow_3.Position = UDim2.new(0, 1, 0, -1)
+                DropShadow_3.Size = UDim2.new(1, 0, 1, 0)
+                DropShadow_3.ZIndex = 0
+    
+                UICorner_4.Parent = DropShadow_3
+    
+                DropShadow_4.Name = "DropShadow"
+                DropShadow_4.Parent = TextButton
+                DropShadow_4.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
+                DropShadow_4.BorderSizePixel = 0
+                DropShadow_4.Position = UDim2.new(0, -1, 0, 1)
+                DropShadow_4.Size = UDim2.new(1, 0, 1, 0)
+                DropShadow_4.ZIndex = 0
+    
+                UICorner_5.Parent = DropShadow_4
+    
+                fingerprint.Name = "fingerprint"
+                fingerprint.Parent = TextButton
+                fingerprint.BackgroundTransparency = 1.000
+                fingerprint.LayoutOrder = 11
+                fingerprint.Position = UDim2.new(0.90053761, 0, -1.49011612e-08, 0)
+                fingerprint.Size = UDim2.new(0, 21, 0, 21)
+                fingerprint.ZIndex = 2
+                fingerprint.Image = "rbxassetid://3926305904"
+                fingerprint.ImageColor3 = Color3.fromRGB(255, 0, 0)
+                fingerprint.ImageRectOffset = Vector2.new(164, 844)
+                fingerprint.ImageRectSize = Vector2.new(36, 36)
+            end
+            function ButtonsONTab:CreateToggle(text, callback)
+                text = "   " .. text 
+                local toggled = false
+                local TextButton = Instance.new("TextButton")
+                local UICorner = Instance.new("UICorner")
+                local DropShadow = Instance.new("Frame")
+                local UICorner_2 = Instance.new("UICorner")
+                local DropShadow_2 = Instance.new("Frame")
+                local UICorner_3 = Instance.new("UICorner")
+                local DropShadow_3 = Instance.new("Frame")
+                local UICorner_4 = Instance.new("UICorner")
+                local DropShadow_4 = Instance.new("Frame")
+                local UICorner_5 = Instance.new("UICorner")
+                local Frame = Instance.new("Frame")
+                local UICorner_6 = Instance.new("UICorner")
+                local DropShadow_5 = Instance.new("Frame")
+                local UICorner_7 = Instance.new("UICorner")
+                local DropShadow_6 = Instance.new("Frame")
+                local UICorner_8 = Instance.new("UICorner")
+                local DropShadow_7 = Instance.new("Frame")
+                local UICorner_9 = Instance.new("UICorner")
+                local DropShadow_8 = Instance.new("Frame")
+                local UICorner_10 = Instance.new("UICorner")
+    
+    
+                TextButton.Parent = Tab
+                TextButton.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
+                TextButton.BorderSizePixel = 0
+                TextButton.Size = UDim2.new(0, 372, 0, 23)
+                TextButton.Font = Enum.Font.SourceSans
+                TextButton.Text = text
+                TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+                TextButton.TextSize = 14.000
+                TextButton.TextXAlignment = Enum.TextXAlignment.Left
+                local function fire(spect)
+                    toggled = spect or not toggled
+                    
+                    if toggled then
+    
+                        game:GetService("TweenService"):Create(Frame, TweenInfo.new(0.3), {BackgroundColor3 = Color3.fromRGB(255, 0, 0)}):Play()
+                    else
+                        game:GetService("TweenService"):Create(Frame, TweenInfo.new(0.3), {BackgroundColor3 = Color3.fromRGB(33, 32, 32)}):Play()
+    
+                    end
+                    
+                    pcall(callback, toggled)
+                end
+    
+                TextButton.MouseButton1Click:Connect(function()
+    
+                    fire()
+                    
+                end)
+    
+                toggles[#toggles + 1] = {text, fire}
+    
+                UICorner.Parent = TextButton
+    
+                DropShadow.Name = "DropShadow"
+                DropShadow.Parent = TextButton
+                DropShadow.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
+                DropShadow.BorderSizePixel = 0
+                DropShadow.Position = UDim2.new(0, 1, 0, 1)
+                DropShadow.Size = UDim2.new(1, 0, 1, 0)
+                DropShadow.ZIndex = 0
+    
+                UICorner_2.Parent = DropShadow
+    
+                DropShadow_2.Name = "DropShadow"
+                DropShadow_2.Parent = TextButton
+                DropShadow_2.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
+                DropShadow_2.BorderSizePixel = 0
+                DropShadow_2.Position = UDim2.new(0, -1, 0, -1)
+                DropShadow_2.Size = UDim2.new(1, 0, 1, 0)
+                DropShadow_2.ZIndex = 0
+    
+                UICorner_3.Parent = DropShadow_2
+    
+                DropShadow_3.Name = "DropShadow"
+                DropShadow_3.Parent = TextButton
+                DropShadow_3.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
+                DropShadow_3.BorderSizePixel = 0
+                DropShadow_3.Position = UDim2.new(0, 1, 0, -1)
+                DropShadow_3.Size = UDim2.new(1, 0, 1, 0)
+                DropShadow_3.ZIndex = 0
+    
+                UICorner_4.Parent = DropShadow_3
+    
+                DropShadow_4.Name = "DropShadow"
+                DropShadow_4.Parent = TextButton
+                DropShadow_4.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
+                DropShadow_4.BorderSizePixel = 0
+                DropShadow_4.Position = UDim2.new(0, -1, 0, 1)
+                DropShadow_4.Size = UDim2.new(1, 0, 1, 0)
+                DropShadow_4.ZIndex = 0
+    
+                UICorner_5.Parent = DropShadow_4
+    
+                Frame.Parent = TextButton
+                Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+                Frame.BackgroundColor3 = Color3.fromRGB(33, 32, 32)
+                Frame.BorderSizePixel = 0
+                Frame.Position = UDim2.new(0.927999973, 0, 0.451521754, 1)
+                Frame.Size = UDim2.new(0, 19, 0, 19)
+                Frame.ZIndex = 2
+    
+                UICorner_6.CornerRadius = UDim.new(0, 4)
+                UICorner_6.Parent = Frame
+    
+                DropShadow_5.Name = "DropShadow"
+                DropShadow_5.Parent = Frame
+                DropShadow_5.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
+                DropShadow_5.BorderSizePixel = 0
+                DropShadow_5.Position = UDim2.new(0, -1, 0, 1)
+                DropShadow_5.Size = UDim2.new(1, 0, 1, 0)
+    
+                UICorner_7.CornerRadius = UDim.new(0, 4)
+                UICorner_7.Parent = DropShadow_5
+    
+                DropShadow_6.Name = "DropShadow"
+                DropShadow_6.Parent = Frame
+                DropShadow_6.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
+                DropShadow_6.BorderSizePixel = 0
+                DropShadow_6.Position = UDim2.new(0, -1, 0, -1)
+                DropShadow_6.Size = UDim2.new(1, 0, 1, 0)
+    
+                UICorner_8.CornerRadius = UDim.new(0, 4)
+                UICorner_8.Parent = DropShadow_6
+    
+                DropShadow_7.Name = "DropShadow"
+                DropShadow_7.Parent = Frame
+                DropShadow_7.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
+                DropShadow_7.BorderSizePixel = 0
+                DropShadow_7.Position = UDim2.new(0, 1, 0, -1)
+                DropShadow_7.Size = UDim2.new(1, 0, 1, 0)
+    
+                UICorner_9.CornerRadius = UDim.new(0, 4)
+                UICorner_9.Parent = DropShadow_7
+    
+                DropShadow_8.Name = "DropShadow"
+                DropShadow_8.Parent = Frame
+                DropShadow_8.BackgroundColor3 = Color3.fromRGB(255, 12, 12)
+                DropShadow_8.BorderSizePixel = 0
+                DropShadow_8.Position = UDim2.new(0, 1, 0, 1)
+                DropShadow_8.Size = UDim2.new(1, 0, 1, 0)
+    
+                UICorner_10.CornerRadius = UDim.new(0, 4)
+                UICorner_10.Parent = DropShadow_8
+    
+                return fire
+            end
+            return ButtonsONTab
+        end
+        
+        return EpicLibrary
+    end
+    
+    
+    
+    menu = library
     local speaker = game.Players.LocalPlayer
-
-    local Root = speaker.Character:WaitForChild("HumanoidRootPart") or speaker.CharacterAdded:wait():WaitForChild("HumanoidRootPart")
+    menu = menu:CreateWindow("SPTS hub")
     
-    local old = Root.CFrame
-    Root.CFrame = CFrame.new(599, 999, 900)
     game:GetService("ReplicatedStorage").RemoteEvent:FireServer({[1] = "Respawn"})
     
-    speaker.CharacterAdded:wait()
-    local speaker = game.Players.LocalPlayer
-    local Root = speaker.Character:WaitForChild("HumanoidRootPart") or speaker.CharacterAdded:wait():WaitForChild("HumanoidRootPart")
-    for i = 1,10 do
-
-        Root.CFrame = old
-        wait(0.1)
-    end
-end
-
-farms:CreateButton("Refresh", Refresh)
-function Unequip_All()
-    for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-        if v:IsA("Tool") then
-            v.Parent = game.Players.LocalPlayer.Backpack
-        end
-    end
-end
-farms:CreateToggle("Auto respawn", function(bool)
-    autorespawn = bool 
-
+    
+    
     spawn(function()
-        while autorespawn do
+        local speaker = game.Players.LocalPlayer
+    
+        while true and task.wait() do
             pcall(function()
-                if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
-                    Refresh()
+                if game.Players.LocalPlayer.PlayerGui.ScreenGui.Enabled==false and game.Lighting.Blur.Enabled == true and (speaker.Character and speaker.Character:FindFirstChild("Humanoid")).Health > 0 then
+                    game.Lighting.Blur.Enabled = false
+                    game.Players.LocalPlayer.PlayerGui.IntroGui.Enabled = false
+                    game.Players.LocalPlayer.PlayerGui.ScreenGui.Enabled = true
                 end
             end)
-            wait(1)
         end
     end)
-end)
-
-NewFarm(
-    "Farm First",
-    "Fist Training",
-    {
-        {number = 0; stats = Stats.First; cframe = CFrame.new(406.887665, 249.188797, 976.322021, -0.792755067, 1.1043349e-07, 0.609540343, 7.74301441e-08, 1, -8.04710538e-08, -0.609540343, -1.65970402e-08, -0.792755067)};
-        {number = 100000; stats = Stats.First; cframe = CFrame.new(-2275.03125, 1943.37939, 1051.66333, 0.0607836209, -3.70249396e-08, 0.998150945, 5.7621703e-09, 1, 3.67426338e-08, -0.998150945, 3.51816531e-09, 0.0607836209)};
-        {number = 1000000000; stats = Stats.First; cframe = CFrame.new(1186.93616, 4779.06348, -2297.53467, -0.371832132, -0.156149551, 0.915072799, 1.7578121e-07, 0.985751152, 0.168210298, -0.928299963, 0.0625461563, -0.366533905)};
-        {number = 100000000000; stats = Stats.First; cframe = CFrame.new(1374.39551, 9266.51758, 1659.69495, 0.865195632, 0.319280475, -0.386647761, -1.81473115e-06, 0.771085382, 0.636731803, 0.501434445, -0.550896883, 0.667140245)};
-        {number = 10000000000000; stats = Stats.First; cframe = CFrame.new(-359.757324, 15727.9697, -31.8966103, -0.943179667, -0.297547728, 0.147910252, -5.98836721e-07, 0.44513467, 0.895463645, -0.332283169, 0.844583035, -0.419842154)};
-
-    }
-)
-
-
-NewFarm(
-    "Farm Body",
-    "",
-    {
-        {number = 0; stats = Stats.Body; cframe = CFrame.new(455.258972, 249.190018, 888.708618, -0.152845666, 1.13263773e-07, -0.988250077, -5.59382762e-10, 1, 1.14696952e-07, 0.988250077, 1.80837425e-08, -0.152845666)};
-        {number = 100; stats = Stats.Body; cframe = CFrame.new(367.184113, 249.731277, -444.085938, -0.175680995, -1.01059364e-07, 0.984447122, 1.31243922e-08, 1, 1.04998087e-07, -0.984447122, 3.13664401e-08, -0.175680995)};
-        {number = 10000; stats = Stats.Body; cframe = CFrame.new(356.676758, 264.893585, -495.948822, -0.99989754, -0.0027670078, 0.0140450522, 2.99783579e-07, 0.981136858, 0.193314552, -0.0143150212, 0.193294749, -0.981036305)};
-        {number = 100000; stats = Stats.Body; cframe = CFrame.new(1637.09155, 259.230103, 2245.51294, 0.878243208, -1.1784981e-08, -0.478214264, 1.34939366e-08, 1, 1.37964556e-10, 0.478214264, -6.57415899e-09, 0.878243208)};
-        {number = 1000000; stats = Stats.Body; cframe = CFrame.new(-2295.14966, 979.431519, 1070.17297, -0.0653749183, -0.18810378, 0.979970992, -2.09807718e-06, 0.982071877, 0.188506901, -0.997860789, 0.0123215672, -0.0642032623)};
-        {number = 10000000; stats = Stats.Body; cframe = CFrame.new(-2047.81421, 712.246948, -1888.62793, -0.296391934, 0.0546080321, -0.953503966, 7.7555138e-05, 0.998365402, 0.0571531802, 0.955066383, 0.0168657918, -0.2959117)};
-        {number = 1000000000; stats = Stats.Body; cframe = CFrame.new(-247.085373, 286.888702, 978.444702, -0.998405397, -1.40505418e-09, 0.0564500391, -3.59635377e-11, 1, 2.42541542e-08, -0.0564500391, 2.4213449e-08, -0.998405397)};
-        {number = 100000000000; stats = Stats.Body; cframe = CFrame.new(-275.752045, 281.419586, 991.447266, 0.300231099, -4.36285841e-10, 0.953866482, -4.62642896e-10, 1, 6.03004313e-10, -0.953866482, -6.22340179e-10, 0.300231099)};
-        {number = 10000000000000; stats = Stats.Body; cframe = CFrame.new(-277.946014, 281.41983, 1007.26373, -0.566190839, 9.75158176e-09, -0.824274182, -5.08084241e-08, 1, 4.67306229e-08, 0.824274182, 6.83385224e-08, -0.566190839)};
-    }
-)
-
-
-NewFarm(
-    "Farm Psy",
-    "Meditate",
-    {
-        {number = 1000000; stats = Stats.Psy; cframe = CFrame.new(-2532, 5486, -534)};
-        {number = 1000000000; stats = Stats.Psy; cframe = CFrame.new(-2560.03516, 5500.78906, -439.525177, 0.141069382, -2.13925899e-09, 0.989999712, -6.21240304e-09, 1, 3.04610071e-09, -0.989999712, -6.57998855e-09, 0.141069382)};
-        {number = 1000000000000; stats = Stats.Psy; cframe = CFrame.new(-2580.73315, 5516.34619, -500.459839, 0.998254836, 4.28544382e-08, 0.0590536185, -4.37836825e-08, 1, 1.44417323e-08, -0.0590536185, -1.70021135e-08, 0.998254836)};
-        {number = 1000000000000000; stats = Stats.Psy; cframe = CFrame.new(-2542.24854, 5409.48779, -494.291351, 0.895807028, -3.13333821e-08, 0.444443166, 2.46675498e-08, 1, 2.07810995e-08, -0.444443166, -7.65253105e-09, 0.895807028)};
-    }
-)
-function toggleJumpPower(bool)
-    jumppower = bool
-    for i = 1,10 do
-        task.spawn(function()
-            while jumppower and task.wait() do
-                pcall(function()
-                    game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
-                end)
-            end
-        end)
-    end
-end
-function getHeight()
-
-    if game.Players.LocalPlayer.Character:FindFirstChild("RightWeight4") and game.Players.LocalPlayer.Character:FindFirstChild("LeftWeight4") then
-
-            return true
-
-    end
-
-    return false
-
-end
-
-
-
-local psy_active = false
-local jump_active = false
-local first_active = false 
-local body_active = false
-local times_psy = 1
-local times_first = 1
-local times_body = 1
-farms:CreateToggle("Farm {All}", function(bool)
-    three = bool
-    local Psy = {
-        "Meditate";
-        {number = 1000000; stats = Stats.Psy; cframe = CFrame.new(-2532, 5486, -534)};
-        {number = 1000000000; stats = Stats.Psy; cframe = CFrame.new(-2560.03516, 5500.78906, -439.525177, 0.141069382, -2.13925899e-09, 0.989999712, -6.21240304e-09, 1, 3.04610071e-09, -0.989999712, -6.57998855e-09, 0.141069382)};
-        {number = 1000000000000; stats = Stats.Psy; cframe = CFrame.new(-2580.73315, 5516.34619, -500.459839, 0.998254836, 4.28544382e-08, 0.0590536185, -4.37836825e-08, 1, 1.44417323e-08, -0.0590536185, -1.70021135e-08, 0.998254836)};
-        {number = 1000000000000000; stats = Stats.Psy; cframe = CFrame.new(-2542.24854, 5409.48779, -494.291351, 0.895807028, -3.13333821e-08, 0.444443166, 2.46675498e-08, 1, 2.07810995e-08, -0.444443166, -7.65253105e-09, 0.895807028)};
-    }
-    local Body = {
-        {number = 0; stats = Stats.Body; cframe = CFrame.new(455.258972, 249.190018, 888.708618, -0.152845666, 1.13263773e-07, -0.988250077, -5.59382762e-10, 1, 1.14696952e-07, 0.988250077, 1.80837425e-08, -0.152845666)};
-        {number = 100; stats = Stats.Body; cframe = CFrame.new(367.184113, 249.731277, -444.085938, -0.175680995, -1.01059364e-07, 0.984447122, 1.31243922e-08, 1, 1.04998087e-07, -0.984447122, 3.13664401e-08, -0.175680995)};
-        {number = 10000; stats = Stats.Body; cframe = CFrame.new(356.676758, 264.893585, -495.948822, -0.99989754, -0.0027670078, 0.0140450522, 2.99783579e-07, 0.981136858, 0.193314552, -0.0143150212, 0.193294749, -0.981036305)};
-        {number = 100000; stats = Stats.Body; cframe = CFrame.new(1637.09155, 259.230103, 2245.51294, 0.878243208, -1.1784981e-08, -0.478214264, 1.34939366e-08, 1, 1.37964556e-10, 0.478214264, -6.57415899e-09, 0.878243208)};
-        {number = 1000000; stats = Stats.Body; cframe = CFrame.new(-2295.14966, 979.431519, 1070.17297, -0.0653749183, -0.18810378, 0.979970992, -2.09807718e-06, 0.982071877, 0.188506901, -0.997860789, 0.0123215672, -0.0642032623)};
-        {number = 10000000; stats = Stats.Body; cframe = CFrame.new(-2047.81421, 712.246948, -1888.62793, -0.296391934, 0.0546080321, -0.953503966, 7.7555138e-05, 0.998365402, 0.0571531802, 0.955066383, 0.0168657918, -0.2959117)};
-        {number = 1000000000; stats = Stats.Body; cframe = CFrame.new(-247.085373, 286.888702, 978.444702, -0.998405397, -1.40505418e-09, 0.0564500391, -3.59635377e-11, 1, 2.42541542e-08, -0.0564500391, 2.4213449e-08, -0.998405397)};
-        {number = 100000000000; stats = Stats.Body; cframe = CFrame.new(-275.752045, 281.419586, 991.447266, 0.300231099, -4.36285841e-10, 0.953866482, -4.62642896e-10, 1, 6.03004313e-10, -0.953866482, -6.22340179e-10, 0.300231099)};
-        {number = 10000000000000; stats = Stats.Body; cframe = CFrame.new(-277.946014, 281.41983, 1007.26373, -0.566190839, 9.75158176e-09, -0.824274182, -5.08084241e-08, 1, 4.67306229e-08, 0.824274182, 6.83385224e-08, -0.566190839)};
-    }
-    local First = {
-        "Fist Training";
-        {number = 0; stats = Stats.First; cframe = CFrame.new(406.887665, 249.188797, 976.322021, -0.792755067, 1.1043349e-07, 0.609540343, 7.74301441e-08, 1, -8.04710538e-08, -0.609540343, -1.65970402e-08, -0.792755067)};
-        {number = 100000; stats = Stats.First; cframe = CFrame.new(-2275.03125, 1943.37939, 1051.66333, 0.0607836209, -3.70249396e-08, 0.998150945, 5.7621703e-09, 1, 3.67426338e-08, -0.998150945, 3.51816531e-09, 0.0607836209)};
-        {number = 1000000000; stats = Stats.First; cframe = CFrame.new(1186.93616, 4779.06348, -2297.53467, -0.371832132, -0.156149551, 0.915072799, 1.7578121e-07, 0.985751152, 0.168210298, -0.928299963, 0.0625461563, -0.366533905)};
-        {number = 100000000000; stats = Stats.First; cframe = CFrame.new(1374.39551, 9266.51758, 1659.69495, 0.865195632, 0.319280475, -0.386647761, -1.81473115e-06, 0.771085382, 0.636731803, 0.501434445, -0.550896883, 0.667140245)};
-        {number = 10000000000000; stats = Stats.First; cframe = CFrame.new(-359.757324, 15727.9697, -31.8966103, -0.943179667, -0.297547728, 0.147910252, -5.98836721e-07, 0.44513467, 0.895463645, -0.332283169, 0.844583035, -0.419842154)};
-
-    }
-
-    function getBest(tab)
-        local pos, tool, location
-        for i,v in pairs(tab) do
-            if typeof(v) == "table" and v.stats.Value > v.number then
-                pos = v.cframe
-                location = i
-                tool = tab[1]
-            end
-        end
-        return pos, tool, location
-    end
-    zero = Vector3.new(0,0,0)
-    AutoClick(three)
-    if bool then
-        oldpos = getRoot().CFrame
-        spawn(function()
-            while three and task.wait() do
-                pcall(function()
-                    if psy_active and three then
-                        for i = 0,times_spy do
-                            local pos, toolname = getBest(Psy)
-                            if pos and toolname then
-                                Unequip_All()
-                                Equip(toolname)
-                                local reached = false
-                                connection = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChildAdded:Connect(function(child)
-                                    if not (child.Name ~= "MSXpFrame" and child.Name == "JFXpFrame") then
-                                        reached = true
-                                    end
-                                end)
-                                repeat
-                                    Equip(toolname)
-                                    getRoot().CFrame = pos 
-                                    getRoot().Velocity = zero
-                                    task.wait()
-                                until reached
-                                connection:Disconnect()
-                            end
-                        end
-                    end
-                    if body_active and three then
-                        for i = 0,times_body do
-                            local pos, toolname, location = getBest(Body)
+    local farms = menu:CreateTab("Farms")
     
-                            if pos and toolname then
-                                Unequip_All()
-  
-                                local reached = false
-                                connection = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChildAdded:Connect(function(child)
-                                    if not (child.Name ~= "MSXpFrame" and child.Name == "JFXpFrame") then
-                                        reached = true
-                                    end
-                                end)
-                                repeat
-
-                                    getRoot().CFrame = pos  Equip(toolname)
-                                    getRoot().Velocity = zero
-                                    task.wait()
-                                until reached
-                                connection:Disconnect()
-                            end
-                        end
-                    end
-                    if first_active and three then
-                        for i = 0,times_first do
-                            local pos, toolname, location = getBest(First)
+    local teleports = menu:CreateTab("Teleports")
     
-                            if pos and toolname then
-                                Unequip_All()
-                                Equip(toolname)
-                                AutoClick(false)
-                                delay(0.2, function()
-                                    AutoClick(true)
-                                end)
-        
-                                local reached = false
-                                connection = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChildAdded:Connect(function(child)
-                                    if not (child.Name ~= "MSXpFrame" and child.Name == "JFXpFrame") then
-                                        reached = true
-                                    end
-                                end)
-                                repeat
-                                    getRoot().CFrame = pos 
-                                    getRoot().Velocity = zero
-                                    Equip(toolname)
-                                    
-                                    task.wait()
-                                until reached
-                                connection:Disconnect()
-                            end
-                        end
-                    end
-                end)
-            end
-            
+    
+    
+    
+    local aimbot = menu:CreateTab("Target")
+    
+    local esp = menu:CreateTab"Esp"
+    
+    local auto_refresh = menu:CreateTab("Auto refresh")
+    local clicker = {}
+    function getRoot(plr)
+        plr = plr or game.Players.LocalPlayer
+    
+        local sucess, root = pcall(function()
+            return plr.Character.HumanoidRootPart
         end)
-        spawn(function()
-            toggleJumpPower(true)
-            while three and task.wait() do
-                if jump_active == true then
-                    
-                    game.Players.LocalPlayer.Character.Humanoid.Jump = true
-                    if not getHeight() then
-                        local args = {
-                            [1] = {
-                                [1] = "Weight",
-                                [2] = "Weight4"
-                            }
-                        }
-                        
-                        game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
-                        wait(1)                        
-                    end
-                end
-            end
-            
+        if sucess then return root end
+    end
+    function getHumanoid(plr)
+        plr = plr or game.Players.LocalPlayer
+    
+        local sucess, Humanoid = pcall(function()
+            return plr.Character.Humanoid
         end)
-    else
-        for i = 1,15 do
-            toggleJumpPower(false)
-            getRoot().CFrame = oldpos
-            wait()
+        if sucess then return Humanoid end
+    end
+    function round(num, numDecimalPlaces)
+        local mult = 10^(numDecimalPlaces or 0)
+        return math.floor(num * mult + 0.5) / mult
+    end
+            
+    function converttoletter(num)
+        if num / 1e21 >=1 then
+            newnum = num / 1e21
+            return round(newnum, 6).. "Sx"
+        elseif num / 1e18 >=1 then
+            newnum = num / 1e18
+            return round(newnum, 6).. "Qi"
+        elseif num / 1e15 >=1 then
+            newnum = num / 1e15
+            return round(newnum, 6).. "Qa"
+        elseif num / 1e12 >=1 then
+            newnum = num / 1e12
+            return round(newnum, 6).. "T"
+        elseif num / 1e09 >=1 then
+            newnum = num / 1e09
+            return round(newnum, 6).. "B"
+        elseif num / 1e06 >=1 then
+            newnum = num / 1e06
+            return round(newnum, 6).. "M"
+        elseif num / 1e03 >=1 then
+            newnum = num / 1e03
+            return round(newnum, 6).. "K"
+        else return num
         end
     end
-end)
-
-farms:CreateToggle("That will farm Psy?", function(bool)
-    psy_active = bool
-end)
-farms:CreateToggle("That will farm Jump?", function(bool)
-    jump_active = bool
-end)
-
-farms:CreateToggle("That will farm Body?", function(bool)
-    body_active = bool
-end)
-farms:CreateToggle("That will farm First?", function(bool)
-    first_active = bool
-end)
-
-farms:CreateTextBox("How times will farm Psy?", function(text)
-    times_spy = tonumber(text) or 1 
-end)
-farms:CreateTextBox("How times will farm Body?", function(text)
-    times_body = tonumber(text) or 1 
-end)
-farms:CreateTextBox("How times will farm First?", function(text)
-    times_first = tonumber(text) or 1 
-end)
-
-
-
-farms:CreateToggle("Farms safe", function(bool)
-    getgenv().safefarm = bool
-end)
-
-farms:CreateToggle('Farm time not to die', function(bool)
-    farm_time = bool
-    spawn(function()
+    
+    
+    Translate = function(num)
+        return converttoletter(num)
+    end
+    
+    function AutoClick(bool)
         if bool then
-            oldpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-            while farm_time do
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(math.random(-1000, 1000), math.random(5000, 30000), math.random(-100, 1000))
+            clicker[#clicker + 1] = game:GetService("RunService").Stepped:Connect(function()
+                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v:IsA("Tool") then
+                        v:Activate()
+                    end
+                end
+            end)
+        else
+            if clicker then
+                for i,v in pairs(clicker) do
+                    v:Disconnect()
+                end
+            end
+        end
+        
+    end
+    
+    local Stats = {
+        First = game:GetService("Players").LocalPlayer.PrivateStats.FistStrength;
+        Body = game:GetService("Players").LocalPlayer.PrivateStats.BodyToughness;
+        Psy = game:GetService("Players").LocalPlayer.PrivateStats.PsychicPower;
+    }
+    
+    function Equip(name)
+        pcall(function()
+            for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                if v.Name == name then
+                    v.Parent = game.Players.LocalPlayer.Character
+                end
+            end
+        end)
+    end
+    
+    function NewFarm(farm_name, toolname, cframes)
+        
+        local oldpos
+        local myfarm
+        local fire = farms:CreateToggle(farm_name, function(bool)
+            pcall(function()
+                if isfile(farm_name..'.txt') and not bool then
+                    delfile(farm_name..'.txt')
+                elseif bool then
+                    writefile(farm_name..'.txt', "")
+                end
+            end)
+            AutoClick(bool)
+            if bool then
+                oldpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                myfarm = game:GetService("RunService").Heartbeat:Connect(function()
+                    local pos
+    
+                    for i,v in pairs(cframes) do
+                        if v.stats.Value >= v.number  then
+                            pos = v.cframe
+                            if getgenv().safefarm == true then
+                                pos = pos + Vector3.new(0, -10, 0)
+                            end
+                        end
+                    end
+    
+                    Equip(toolname)
+                    
+                    
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+                end)
+            else
+                pcall(function()
+                    for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                        if v:IsA("Tool") then
+                            v.Parent = game.Players.LocalPlayer.Backpack
+                        end
+                    end
+                end)
+                myfarm:Disconnect()
+                for i = 1,10 do
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = oldpos
+                    wait()
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+                end
+            end
+        end)
+    
+        delay(4, function()
+            local AnyFarm = false
+            if isfile(farm_name..".txt") then
+                AnyFarm= true 
+                pcall(fire)
+            end
+        
+            if AnyFarm then
+                fire_toggle("auto respawn")
+            end
+        end)
+    end
+    
+    
+    local autorespawn = false
+    function Refresh()
+        local speaker = game.Players.LocalPlayer
+    
+        local Root = speaker.Character:WaitForChild("HumanoidRootPart") or speaker.CharacterAdded:wait():WaitForChild("HumanoidRootPart")
+        
+        local old = Root.CFrame
+        Root.CFrame = CFrame.new(599, 999, 900)
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer({[1] = "Respawn"})
+        
+        speaker.CharacterAdded:wait()
+        local speaker = game.Players.LocalPlayer
+        local Root = speaker.Character:WaitForChild("HumanoidRootPart") or speaker.CharacterAdded:wait():WaitForChild("HumanoidRootPart")
+        for i = 1,10 do
+    
+            Root.CFrame = old
+            wait(0.1)
+        end
+    end
+    
+    farms:CreateButton("Refresh", Refresh)
+    function Unequip_All()
+        for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+            if v:IsA("Tool") then
+                v.Parent = game.Players.LocalPlayer.Backpack
+            end
+        end
+    end
+    farms:CreateToggle("Auto respawn", function(bool)
+        autorespawn = bool 
+    
+        spawn(function()
+            while autorespawn do
+                pcall(function()
+                    if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
+                        Refresh()
+                    end
+                end)
+                wait(1)
+            end
+        end)
+    end)
+    
+    NewFarm(
+        "Farm First",
+        "Fist Training",
+        {
+            {number = 0; stats = Stats.First; cframe = CFrame.new(406.887665, 249.188797, 976.322021, -0.792755067, 1.1043349e-07, 0.609540343, 7.74301441e-08, 1, -8.04710538e-08, -0.609540343, -1.65970402e-08, -0.792755067)};
+            {number = 100000; stats = Stats.First; cframe = CFrame.new(-2275.03125, 1943.37939, 1051.66333, 0.0607836209, -3.70249396e-08, 0.998150945, 5.7621703e-09, 1, 3.67426338e-08, -0.998150945, 3.51816531e-09, 0.0607836209)};
+            {number = 1000000000; stats = Stats.First; cframe = CFrame.new(1186.93616, 4779.06348, -2297.53467, -0.371832132, -0.156149551, 0.915072799, 1.7578121e-07, 0.985751152, 0.168210298, -0.928299963, 0.0625461563, -0.366533905)};
+            {number = 100000000000; stats = Stats.First; cframe = CFrame.new(1374.39551, 9266.51758, 1659.69495, 0.865195632, 0.319280475, -0.386647761, -1.81473115e-06, 0.771085382, 0.636731803, 0.501434445, -0.550896883, 0.667140245)};
+            {number = 10000000000000; stats = Stats.First; cframe = CFrame.new(-359.757324, 15727.9697, -31.8966103, -0.943179667, -0.297547728, 0.147910252, -5.98836721e-07, 0.44513467, 0.895463645, -0.332283169, 0.844583035, -0.419842154)};
+    
+        }
+    )
+    
+    
+    NewFarm(
+        "Farm Body",
+        "",
+        {
+            {number = 0; stats = Stats.Body; cframe = CFrame.new(455.258972, 249.190018, 888.708618, -0.152845666, 1.13263773e-07, -0.988250077, -5.59382762e-10, 1, 1.14696952e-07, 0.988250077, 1.80837425e-08, -0.152845666)};
+            {number = 100; stats = Stats.Body; cframe = CFrame.new(367.184113, 249.731277, -444.085938, -0.175680995, -1.01059364e-07, 0.984447122, 1.31243922e-08, 1, 1.04998087e-07, -0.984447122, 3.13664401e-08, -0.175680995)};
+            {number = 10000; stats = Stats.Body; cframe = CFrame.new(356.676758, 264.893585, -495.948822, -0.99989754, -0.0027670078, 0.0140450522, 2.99783579e-07, 0.981136858, 0.193314552, -0.0143150212, 0.193294749, -0.981036305)};
+            {number = 100000; stats = Stats.Body; cframe = CFrame.new(1637.09155, 259.230103, 2245.51294, 0.878243208, -1.1784981e-08, -0.478214264, 1.34939366e-08, 1, 1.37964556e-10, 0.478214264, -6.57415899e-09, 0.878243208)};
+            {number = 1000000; stats = Stats.Body; cframe = CFrame.new(-2295.14966, 979.431519, 1070.17297, -0.0653749183, -0.18810378, 0.979970992, -2.09807718e-06, 0.982071877, 0.188506901, -0.997860789, 0.0123215672, -0.0642032623)};
+            {number = 10000000; stats = Stats.Body; cframe = CFrame.new(-2047.81421, 712.246948, -1888.62793, -0.296391934, 0.0546080321, -0.953503966, 7.7555138e-05, 0.998365402, 0.0571531802, 0.955066383, 0.0168657918, -0.2959117)};
+            {number = 1000000000; stats = Stats.Body; cframe = CFrame.new(-247.085373, 286.888702, 978.444702, -0.998405397, -1.40505418e-09, 0.0564500391, -3.59635377e-11, 1, 2.42541542e-08, -0.0564500391, 2.4213449e-08, -0.998405397)};
+            {number = 100000000000; stats = Stats.Body; cframe = CFrame.new(-275.752045, 281.419586, 991.447266, 0.300231099, -4.36285841e-10, 0.953866482, -4.62642896e-10, 1, 6.03004313e-10, -0.953866482, -6.22340179e-10, 0.300231099)};
+            {number = 10000000000000; stats = Stats.Body; cframe = CFrame.new(-277.946014, 281.41983, 1007.26373, -0.566190839, 9.75158176e-09, -0.824274182, -5.08084241e-08, 1, 4.67306229e-08, 0.824274182, 6.83385224e-08, -0.566190839)};
+        }
+    )
+    
+    
+    NewFarm(
+        "Farm Psy",
+        "Meditate",
+        {
+            {number = 1000000; stats = Stats.Psy; cframe = CFrame.new(-2532, 5486, -534)};
+            {number = 1000000000; stats = Stats.Psy; cframe = CFrame.new(-2560.03516, 5500.78906, -439.525177, 0.141069382, -2.13925899e-09, 0.989999712, -6.21240304e-09, 1, 3.04610071e-09, -0.989999712, -6.57998855e-09, 0.141069382)};
+            {number = 1000000000000; stats = Stats.Psy; cframe = CFrame.new(-2580.73315, 5516.34619, -500.459839, 0.998254836, 4.28544382e-08, 0.0590536185, -4.37836825e-08, 1, 1.44417323e-08, -0.0590536185, -1.70021135e-08, 0.998254836)};
+            {number = 1000000000000000; stats = Stats.Psy; cframe = CFrame.new(-2542.24854, 5409.48779, -494.291351, 0.895807028, -3.13333821e-08, 0.444443166, 2.46675498e-08, 1, 2.07810995e-08, -0.444443166, -7.65253105e-09, 0.895807028)};
+        }
+    )
+    function toggleJumpPower(bool)
+        jumppower = bool
+        for i = 1,10 do
+            task.spawn(function()
+                while jumppower and task.wait() do
+                    pcall(function()
+                        game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+                    end)
+                end
+            end)
+        end
+    end
+    function getHeight()
+    
+        if game.Players.LocalPlayer.Character:FindFirstChild("RightWeight4") and game.Players.LocalPlayer.Character:FindFirstChild("LeftWeight4") then
+    
+                return true
+    
+        end
+    
+        return false
+    
+    end
+    
+    
+    
+    local psy_active = false
+    local jump_active = false
+    local first_active = false 
+    local body_active = false
+    local times_psy = 1
+    local times_first = 1
+    local times_body = 1
+    farms:CreateToggle("Farm {All}", function(bool)
+        three = bool
+        local Psy = {
+            "Meditate";
+            {number = 1000000; stats = Stats.Psy; cframe = CFrame.new(-2532, 5486, -534)};
+            {number = 1000000000; stats = Stats.Psy; cframe = CFrame.new(-2560.03516, 5500.78906, -439.525177, 0.141069382, -2.13925899e-09, 0.989999712, -6.21240304e-09, 1, 3.04610071e-09, -0.989999712, -6.57998855e-09, 0.141069382)};
+            {number = 1000000000000; stats = Stats.Psy; cframe = CFrame.new(-2580.73315, 5516.34619, -500.459839, 0.998254836, 4.28544382e-08, 0.0590536185, -4.37836825e-08, 1, 1.44417323e-08, -0.0590536185, -1.70021135e-08, 0.998254836)};
+            {number = 1000000000000000; stats = Stats.Psy; cframe = CFrame.new(-2542.24854, 5409.48779, -494.291351, 0.895807028, -3.13333821e-08, 0.444443166, 2.46675498e-08, 1, 2.07810995e-08, -0.444443166, -7.65253105e-09, 0.895807028)};
+        }
+        local Body = {
+            {number = 0; stats = Stats.Body; cframe = CFrame.new(455.258972, 249.190018, 888.708618, -0.152845666, 1.13263773e-07, -0.988250077, -5.59382762e-10, 1, 1.14696952e-07, 0.988250077, 1.80837425e-08, -0.152845666)};
+            {number = 100; stats = Stats.Body; cframe = CFrame.new(367.184113, 249.731277, -444.085938, -0.175680995, -1.01059364e-07, 0.984447122, 1.31243922e-08, 1, 1.04998087e-07, -0.984447122, 3.13664401e-08, -0.175680995)};
+            {number = 10000; stats = Stats.Body; cframe = CFrame.new(356.676758, 264.893585, -495.948822, -0.99989754, -0.0027670078, 0.0140450522, 2.99783579e-07, 0.981136858, 0.193314552, -0.0143150212, 0.193294749, -0.981036305)};
+            {number = 100000; stats = Stats.Body; cframe = CFrame.new(1637.09155, 259.230103, 2245.51294, 0.878243208, -1.1784981e-08, -0.478214264, 1.34939366e-08, 1, 1.37964556e-10, 0.478214264, -6.57415899e-09, 0.878243208)};
+            {number = 1000000; stats = Stats.Body; cframe = CFrame.new(-2295.14966, 979.431519, 1070.17297, -0.0653749183, -0.18810378, 0.979970992, -2.09807718e-06, 0.982071877, 0.188506901, -0.997860789, 0.0123215672, -0.0642032623)};
+            {number = 10000000; stats = Stats.Body; cframe = CFrame.new(-2047.81421, 712.246948, -1888.62793, -0.296391934, 0.0546080321, -0.953503966, 7.7555138e-05, 0.998365402, 0.0571531802, 0.955066383, 0.0168657918, -0.2959117)};
+            {number = 1000000000; stats = Stats.Body; cframe = CFrame.new(-247.085373, 286.888702, 978.444702, -0.998405397, -1.40505418e-09, 0.0564500391, -3.59635377e-11, 1, 2.42541542e-08, -0.0564500391, 2.4213449e-08, -0.998405397)};
+            {number = 100000000000; stats = Stats.Body; cframe = CFrame.new(-275.752045, 281.419586, 991.447266, 0.300231099, -4.36285841e-10, 0.953866482, -4.62642896e-10, 1, 6.03004313e-10, -0.953866482, -6.22340179e-10, 0.300231099)};
+            {number = 10000000000000; stats = Stats.Body; cframe = CFrame.new(-277.946014, 281.41983, 1007.26373, -0.566190839, 9.75158176e-09, -0.824274182, -5.08084241e-08, 1, 4.67306229e-08, 0.824274182, 6.83385224e-08, -0.566190839)};
+        }
+        local First = {
+            "Fist Training";
+            {number = 0; stats = Stats.First; cframe = CFrame.new(406.887665, 249.188797, 976.322021, -0.792755067, 1.1043349e-07, 0.609540343, 7.74301441e-08, 1, -8.04710538e-08, -0.609540343, -1.65970402e-08, -0.792755067)};
+            {number = 100000; stats = Stats.First; cframe = CFrame.new(-2275.03125, 1943.37939, 1051.66333, 0.0607836209, -3.70249396e-08, 0.998150945, 5.7621703e-09, 1, 3.67426338e-08, -0.998150945, 3.51816531e-09, 0.0607836209)};
+            {number = 1000000000; stats = Stats.First; cframe = CFrame.new(1186.93616, 4779.06348, -2297.53467, -0.371832132, -0.156149551, 0.915072799, 1.7578121e-07, 0.985751152, 0.168210298, -0.928299963, 0.0625461563, -0.366533905)};
+            {number = 100000000000; stats = Stats.First; cframe = CFrame.new(1374.39551, 9266.51758, 1659.69495, 0.865195632, 0.319280475, -0.386647761, -1.81473115e-06, 0.771085382, 0.636731803, 0.501434445, -0.550896883, 0.667140245)};
+            {number = 10000000000000; stats = Stats.First; cframe = CFrame.new(-359.757324, 15727.9697, -31.8966103, -0.943179667, -0.297547728, 0.147910252, -5.98836721e-07, 0.44513467, 0.895463645, -0.332283169, 0.844583035, -0.419842154)};
+    
+        }
+    
+        function getBest(tab)
+            local pos, tool, location
+            for i,v in pairs(tab) do
+                if typeof(v) == "table" and v.stats.Value > v.number then
+                    pos = v.cframe
+                    location = i
+                    tool = tab[1]
+                end
+            end
+            return pos, tool, location
+        end
+        zero = Vector3.new(0,0,0)
+        AutoClick(three)
+        if bool then
+            oldpos = getRoot().CFrame
+            spawn(function()
+                while three and task.wait() do
+                    pcall(function()
+                        if psy_active and three then
+                            for i = 0,times_spy do
+                                local pos, toolname = getBest(Psy)
+                                if pos and toolname then
+                                    Unequip_All()
+                                    Equip(toolname)
+                                    local reached = false
+                                    connection = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChildAdded:Connect(function(child)
+                                        if not (child.Name ~= "MSXpFrame" and child.Name == "JFXpFrame") then
+                                            reached = true
+                                        end
+                                    end)
+                                    repeat
+                                        Equip(toolname)
+                                        getRoot().CFrame = pos 
+                                        getRoot().Velocity = zero
+                                        task.wait()
+                                    until reached
+                                    connection:Disconnect()
+                                end
+                            end
+                        end
+                        if body_active and three then
+                            for i = 0,times_body do
+                                local pos, toolname, location = getBest(Body)
+        
+                                if pos and toolname then
+                                    Unequip_All()
+      
+                                    local reached = false
+                                    connection = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChildAdded:Connect(function(child)
+                                        if not (child.Name ~= "MSXpFrame" and child.Name == "JFXpFrame") then
+                                            reached = true
+                                        end
+                                    end)
+                                    repeat
+    
+                                        getRoot().CFrame = pos  Equip(toolname)
+                                        getRoot().Velocity = zero
+                                        task.wait()
+                                    until reached
+                                    connection:Disconnect()
+                                end
+                            end
+                        end
+                        if first_active and three then
+                            for i = 0,times_first do
+                                local pos, toolname, location = getBest(First)
+        
+                                if pos and toolname then
+                                    Unequip_All()
+                                    Equip(toolname)
+                                    AutoClick(false)
+                                    delay(0.2, function()
+                                        AutoClick(true)
+                                    end)
+            
+                                    local reached = false
+                                    connection = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.ChildAdded:Connect(function(child)
+                                        if not (child.Name ~= "MSXpFrame" and child.Name == "JFXpFrame") then
+                                            reached = true
+                                        end
+                                    end)
+                                    repeat
+                                        getRoot().CFrame = pos 
+                                        getRoot().Velocity = zero
+                                        Equip(toolname)
+                                        
+                                        task.wait()
+                                    until reached
+                                    connection:Disconnect()
+                                end
+                            end
+                        end
+                    end)
+                end
+                
+            end)
+            spawn(function()
+                toggleJumpPower(true)
+                while three and task.wait() do
+                    if jump_active == true then
+                        
+                        game.Players.LocalPlayer.Character.Humanoid.Jump = true
+                        if not getHeight() then
+                            local args = {
+                                [1] = {
+                                    [1] = "Weight",
+                                    [2] = "Weight4"
+                                }
+                            }
+                            
+                            game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+                            wait(1)                        
+                        end
+                    end
+                end
+                
+            end)
+        else
+            for i = 1,15 do
+                toggleJumpPower(false)
+                getRoot().CFrame = oldpos
+                wait()
+            end
+        end
+    end)
+    
+    farms:CreateToggle("That will farm Psy?", function(bool)
+        psy_active = bool
+    end)
+    farms:CreateToggle("That will farm Jump?", function(bool)
+        jump_active = bool
+    end)
+    
+    farms:CreateToggle("That will farm Body?", function(bool)
+        body_active = bool
+    end)
+    farms:CreateToggle("That will farm First?", function(bool)
+        first_active = bool
+    end)
+    
+    farms:CreateTextBox("How times will farm Psy?", function(text)
+        times_spy = tonumber(text) or 1 
+    end)
+    farms:CreateTextBox("How times will farm Body?", function(text)
+        times_body = tonumber(text) or 1 
+    end)
+    farms:CreateTextBox("How times will farm First?", function(text)
+        times_first = tonumber(text) or 1 
+    end)
+    
+    
+    
+    farms:CreateToggle("Farms safe", function(bool)
+        getgenv().safefarm = bool
+    end)
+    
+    farms:CreateToggle('Farm time not to die', function(bool)
+        farm_time = bool
+        spawn(function()
+            if bool then
+                oldpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                while farm_time do
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(math.random(-1000, 1000), math.random(5000, 30000), math.random(-100, 1000))
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+                    task.wait()
+                end
+            else
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = oldpos
                 game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+            end
+        end)
+    end)
+    
+    farms:CreateToggle("Auto clicker" , function(bool)
+        AutoClick(bool)
+    end)
+    farms:CreateToggle("Auto invisible", function(bool)
+        autoinvis = bool
+    
+        spawn(function()
+            while autoinvis and wait(1) do 
+                local args = {
+                    [1] = {
+                        [1] = "Skill_Invisible",
+                        [2] = "Start"
+                    }
+                }
+                
+                game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+                
+            end
+        end)
+    end)
+    for i,v in pairs({
+    
+    }) do 
+    
+    end
+    
+    function getPlayer(name)
+        for i,v in pairs(game.Players:GetChildren()) do
+            if v.Name:lower():match(name:lower()) then
+                return v 
+            end
+        end
+    end
+    local target
+    local Lock = false
+    
+    local gmt = getrawmetatable(game)
+    local namecall = gmt.__namecall
+    
+    setreadonly(gmt, false)
+    
+    gmt.__namecall = newcclosure(function(self, ...)
+        local args = {...}
+        local method = getnamecallmethod()
+    
+        if tostring(method) == "FireServer" and tostring(self) == "RemoteEvent" and Lock == true then
+    
+            pcall(function()
+            
+                if tostring(args[1]) == "Skill_BulletPunch" then
+    
+                    args[3] = target.Character.Head.Position
+        
+    
+                elseif tostring(args[1]) == "Skill_SpherePunch" then
+        
+                    args[2] = target.Character.Head.Position
+        
+    
+                end
+    
+            end)
+    
+            
+            return self.FireServer(self, unpack(args))
+        end
+    
+        return namecall(self, unpack(args))
+    end)
+    
+    setreadonly(gmt, true)
+    
+    aimbot:CreateTextBox("Target", function(text)
+        target = functions.FindPlayer(text)
+    end)
+    
+    aimbot:CreateButton("Get nearest player", function()
+        target = functions.getNearest(false)
+    end)
+    
+    aimbot:CreateButton("Tp", function()
+        speaker.Character.HumanoidRootPart.CFrame = target.Character.HumanoidRootPart.CFrame
+    end)
+    
+    aimbot:CreateToggle("Spectate", function(bool)
+        spectate = bool
+        spawn(function()
+            while spectate do
+                workspace.CurrentCamera.CameraSubject = target.Character
                 task.wait()
             end
-        else
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = oldpos
-            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
-        end
-    end)
-end)
-
-farms:CreateToggle("Auto clicker" , function(bool)
-    AutoClick(bool)
-end)
-farms:CreateToggle("Auto invisible", function(bool)
-    autoinvis = bool
-
-    spawn(function()
-        while autoinvis and wait(1) do 
-            local args = {
-                [1] = {
-                    [1] = "Skill_Invisible",
-                    [2] = "Start"
-                }
-            }
-            
-            game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
-            
-        end
-    end)
-end)
-for i,v in pairs({
-
-}) do 
-
-end
-
-function getPlayer(name)
-    for i,v in pairs(game.Players:GetChildren()) do
-        if v.Name:lower():match(name:lower()) then
-            return v 
-        end
-    end
-end
-local target
-local Lock = false
-
-local gmt = getrawmetatable(game)
-local namecall = gmt.__namecall
-
-setreadonly(gmt, false)
-
-gmt.__namecall = newcclosure(function(self, ...)
-    local args = {...}
-    local method = getnamecallmethod()
-
-    if tostring(method) == "FireServer" and tostring(self) == "RemoteEvent" and Lock == true then
-
-        pcall(function()
-        
-            if tostring(args[1]) == "Skill_BulletPunch" then
-
-                args[3] = target.Character.Head.Position
-    
-
-            elseif tostring(args[1]) == "Skill_SpherePunch" then
-    
-                args[2] = target.Character.Head.Position
-    
-
-            end
-
+            workspace.CurrentCamera.CameraSubject = speaker.Character
         end)
-
-        
-        return self.FireServer(self, unpack(args))
-    end
-
-    return namecall(self, unpack(args))
-end)
-
-setreadonly(gmt, true)
-
-aimbot:CreateTextBox("Target", function(text)
-    target = functions.FindPlayer(text)
-end)
-
-aimbot:CreateButton("Get nearest player", function()
-    target = functions.getNearest(false)
-end)
-
-aimbot:CreateButton("Tp", function()
-    speaker.Character.HumanoidRootPart.CFrame = target.Character.HumanoidRootPart.CFrame
-end)
-
-aimbot:CreateToggle("Spectate", function(bool)
-    spectate = bool
-    spawn(function()
-        while spectate do
-            workspace.CurrentCamera.CameraSubject = target.Character
-            task.wait()
-        end
-        workspace.CurrentCamera.CameraSubject = speaker.Character
     end)
-end)
-
-aimbot:CreateToggle("Kill With First", function(b)
-    kill = b 
-
-    spawn(function()
-        if kill then
-            oldpos = game.Players.LocalPlayer.Character.Head.Position
-        end
-        while kill and task.wait() do
-            local args = {
-                [1] = {
-                    [1] = "Skill_BulletPunch",
-                    [2] = "Right",
-                    [3] = target.Character.Head.Position
-                }
-            }
-            
-            
-            game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
-            local args = {
-                [1] = {
-                    [1] = "Skill_SpherePunch",
-                    [2] = target.Character.Head.Position
-                }
-            }
-            game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
-            speaker.Character.HumanoidRootPart.CFrame = CFrame.new(target.Character.Head.Position + Vector3.new(0, 10, 0))
-
-        end
-    end)
-
-    if not kill then
-        for i = 1,10 do
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(oldpos)
-            wait()
-        end
-    end
-end)
-
-aimbot:CreateToggle("Kill With Psychic", function(b)
-    kill = b 
-
-    spawn(function()
-        if kill then
-            oldpos = game.Players.LocalPlayer.Character.Head.Position
-        end
-        while kill and task.wait() do
-            local args = {
-                [1] = {
-                    [1] = "Skill_SoulAttack_Start",
-                    [2] = target
-                }
-            }
-            
-            game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
-            
-            
-            speaker.Character.HumanoidRootPart.CFrame = CFrame.new(target.Character.Head.Position + Vector3.new(0, 10, 0))
-
-        end
-    end)
-
-    if not kill then
-        local args = {
-            [1] = {
-                [1] = "Skill_SoulAttack_End"
-            }
-        }
-        
-        game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
-        for i = 1,10 do
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(oldpos)
-            wait()
-        end
-    end
-end)
-
-aimbot:CreateToggle("Fire in this player", function(b)
-    kill = b 
-
-    spawn(function()
-
-        while kill and task.wait() do
-            local args = {
-                [1] = {
-                    [1] = "Skill_BulletPunch",
-                    [2] = "Right",
-                    [3] = target.Character.Head.Position
-                }
-            }
-            
-            
-            game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
-
-        end
-    end)
-
-
-end)
-
-local NC = false
-local NC_Clip
-local Player = game.Players.LocalPlayer
-local Char = Player.Character or Player.CharacterAdded:wait()
-
-local Mouse = Player:GetMouse()
-
-local Speed = 2
-
-local Service = game:GetService("ContextActionService")
-local Camera = workspace.CurrentCamera
-local Player = game:GetService("Players").LocalPlayer 
-local Input = game:GetService("UserInputService") 
-local Forward = false 
-local Back = false 
-local Left = false 
-local Right = false 
-local Up = false 
-local Down = false 
-local BodyPosition
-local Menu
-local Heart = {}
-local VELOCIDADE = 5
-
-Player.Chatted:Connect(function(cmd)
-	cmd = cmd .. ' '
-	cmd = cmd:split(" ")
-	
-	if cmd[1] == "/e" then
-		if cmd[2] == "velo" then
-			VELOCIDADE = tonumber(cmd[3])
-		end
-	end
-end)
-Input.InputBegan:Connect(function(Key,b)
-    if b then return end
-    if Key.KeyCode == Enum.KeyCode.LeftShift then
-        VELOCIDADE+=25
-    end
-	if Key.KeyCode == Enum.KeyCode.W or Key.KeyCode == Enum.KeyCode.Up then 
-		Forward = true 
-	end 
-	if Key.KeyCode == Enum.KeyCode.S or Key.KeyCode == Enum.KeyCode.Down then 
-		Back = true 
-	end 
-	if Key.KeyCode == Enum.KeyCode.A or Key.KeyCode == Enum.KeyCode.Left then
-		Left = true 
-	end 
-	if Key.KeyCode == Enum.KeyCode.D or Key.KeyCode == Enum.KeyCode.Right then 
-		Right = true 
-	end 
-	if Key.KeyCode == Enum.KeyCode.Space then 
-		Up = true 
-	end             
-	if Key.KeyCode == Enum.KeyCode.LeftControl then 
-		Down = true 
-	end 
-end)
-Input.InputEnded:Connect(function(Key, b)
-    if b then return end
-    if Key.KeyCode == Enum.KeyCode.LeftShift then
-    VELOCIDADE-=25
-    end
-	if Key.KeyCode == Enum.KeyCode.W or Key.KeyCode == Enum.KeyCode.Up then 
-		Forward = false 
-	end 
-	if Key.KeyCode == Enum.KeyCode.S or Key.KeyCode == Enum.KeyCode.Down then 
-		Back = false 
-	end 
-	if Key.KeyCode == Enum.KeyCode.A or Key.KeyCode == Enum.KeyCode.Left then
-		Left = false 
-	end 
-	if Key.KeyCode == Enum.KeyCode.D or Key.KeyCode == Enum.KeyCode.Right then 
-		Right = false 
-	end 
-	if Key.KeyCode == Enum.KeyCode.Space then 
-		Up = false 
-	end 
-	if Key.KeyCode == Enum.KeyCode.LeftControl then 
-		Down = false 
-	end 
-end)
-farms:CreateToggle("Fly", function(bool)
-    NC = bool
-		
-    Char.Animate.Enabled = not NC
-    if NC then
+    
+    aimbot:CreateToggle("Kill With First", function(b)
+        kill = b 
+    
         spawn(function()
+            if kill then
+                oldpos = game.Players.LocalPlayer.Character.Head.Position
+            end
+            while kill and task.wait() do
+                local args = {
+                    [1] = {
+                        [1] = "Skill_BulletPunch",
+                        [2] = "Right",
+                        [3] = target.Character.Head.Position
+                    }
+                }
+                
+                
+                game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+                local args = {
+                    [1] = {
+                        [1] = "Skill_SpherePunch",
+                        [2] = target.Character.Head.Position
+                    }
+                }
+                game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+                speaker.Character.HumanoidRootPart.CFrame = CFrame.new(target.Character.Head.Position + Vector3.new(0, 10, 0))
+    
+            end
+        end)
+    
+        if not kill then
+            for i = 1,10 do
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(oldpos)
+                wait()
+            end
+        end
+    end)
+    
+    aimbot:CreateToggle("Kill With Psychic", function(b)
+        kill = b 
+    
+        spawn(function()
+            if kill then
+                oldpos = game.Players.LocalPlayer.Character.Head.Position
+            end
+            while kill and task.wait() do
+                local args = {
+                    [1] = {
+                        [1] = "Skill_SoulAttack_Start",
+                        [2] = target
+                    }
+                }
+                
+                game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+                
+                
+                speaker.Character.HumanoidRootPart.CFrame = CFrame.new(target.Character.Head.Position + Vector3.new(0, 10, 0))
+    
+            end
+        end)
+    
+        if not kill then
+            local args = {
+                [1] = {
+                    [1] = "Skill_SoulAttack_End"
+                }
+            }
             
-            NC_Clip = game:GetService("RunService").Stepped:Connect(function()
+            game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+            for i = 1,10 do
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(oldpos)
+                wait()
+            end
+        end
+    end)
+    
+    aimbot:CreateToggle("Fire in this player", function(b)
+        kill = b 
+    
+        spawn(function()
+    
+            while kill and task.wait() do
+                local args = {
+                    [1] = {
+                        [1] = "Skill_BulletPunch",
+                        [2] = "Right",
+                        [3] = target.Character.Head.Position
+                    }
+                }
+                
+                
+                game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+    
+            end
+        end)
+    
+    
+    end)
+    
+    local NC = false
+    local NC_Clip
+    local Player = game.Players.LocalPlayer
+    local Char = Player.Character or Player.CharacterAdded:wait()
+    
+    local Mouse = Player:GetMouse()
+    
+    local Speed = 2
+    
+    local Service = game:GetService("ContextActionService")
+    local Camera = workspace.CurrentCamera
+    local Player = game:GetService("Players").LocalPlayer 
+    local Input = game:GetService("UserInputService") 
+    local Forward = false 
+    local Back = false 
+    local Left = false 
+    local Right = false 
+    local Up = false 
+    local Down = false 
+    local BodyPosition
+    local Menu
+    local Heart = {}
+    local VELOCIDADE = 5
+    
+    Player.Chatted:Connect(function(cmd)
+        cmd = cmd .. ' '
+        cmd = cmd:split(" ")
+        
+        if cmd[1] == "/e" then
+            if cmd[2] == "velo" then
+                VELOCIDADE = tonumber(cmd[3])
+            end
+        end
+    end)
+    Input.InputBegan:Connect(function(Key,b)
+        if b then return end
+        if Key.KeyCode == Enum.KeyCode.LeftShift then
+            VELOCIDADE+=25
+        end
+        if Key.KeyCode == Enum.KeyCode.W or Key.KeyCode == Enum.KeyCode.Up then 
+            Forward = true 
+        end 
+        if Key.KeyCode == Enum.KeyCode.S or Key.KeyCode == Enum.KeyCode.Down then 
+            Back = true 
+        end 
+        if Key.KeyCode == Enum.KeyCode.A or Key.KeyCode == Enum.KeyCode.Left then
+            Left = true 
+        end 
+        if Key.KeyCode == Enum.KeyCode.D or Key.KeyCode == Enum.KeyCode.Right then 
+            Right = true 
+        end 
+        if Key.KeyCode == Enum.KeyCode.Space then 
+            Up = true 
+        end             
+        if Key.KeyCode == Enum.KeyCode.LeftControl then 
+            Down = true 
+        end 
+    end)
+    Input.InputEnded:Connect(function(Key, b)
+        if b then return end
+        if Key.KeyCode == Enum.KeyCode.LeftShift then
+        VELOCIDADE-=25
+        end
+        if Key.KeyCode == Enum.KeyCode.W or Key.KeyCode == Enum.KeyCode.Up then 
+            Forward = false 
+        end 
+        if Key.KeyCode == Enum.KeyCode.S or Key.KeyCode == Enum.KeyCode.Down then 
+            Back = false 
+        end 
+        if Key.KeyCode == Enum.KeyCode.A or Key.KeyCode == Enum.KeyCode.Left then
+            Left = false 
+        end 
+        if Key.KeyCode == Enum.KeyCode.D or Key.KeyCode == Enum.KeyCode.Right then 
+            Right = false 
+        end 
+        if Key.KeyCode == Enum.KeyCode.Space then 
+            Up = false 
+        end 
+        if Key.KeyCode == Enum.KeyCode.LeftControl then 
+            Down = false 
+        end 
+    end)
+    farms:CreateToggle("Fly", function(bool)
+        NC = bool
+            
+        Char.Animate.Enabled = not NC
+        if NC then
+            spawn(function()
+                
+                NC_Clip = game:GetService("RunService").Stepped:Connect(function()
+                    
+                end)
                 
             end)
             
-        end)
-        
-
-        Heart[#Heart + 1] = game["Run Service"].Heartbeat:Connect(function()
-            if Forward then 
-                Player.Character:TranslateBy(Camera.CFrame.lookVector*VELOCIDADE) 
-            end 
-            if Back then 
-                Player.Character:TranslateBy(-Camera.CFrame.lookVector*VELOCIDADE) 
-            end 
-            if Left then 
-                Player.Character:TranslateBy(-Camera.CFrame:vectorToWorldSpace(Vector3.new(1,0,0))*VELOCIDADE) 
-            end 
-            if Right then 
-                Player.Character:TranslateBy(Camera.CFrame:vectorToWorldSpace(Vector3.new(1,0,0))*VELOCIDADE) 
-            end 
-            if Up then Player.Character:TranslateBy(Camera.CFrame:vectorToWorldSpace(Vector3.new(0,1,0))*VELOCIDADE) 
-            end 
-            if Down then 
-                Player.Character:TranslateBy(-Camera.CFrame:vectorToWorldSpace(Vector3.new(0,1,0))*VELOCIDADE) 
-            end  
-        end)
-        spawn(function()
-            while NC --[[Dont need "==true"]] do
-            Char=game.Players.LocalPlayer.Character
-                Char.HumanoidRootPart.Velocity = Vector3.new(0,1.5,0)
-                task.wait()
-            end
-        end)
-        
-    else
-        for i,v in pairs(Heart) do v:Disconnect() end
-    end
-end)
-
-
-local VisibleEsp = false
-local VisibleLine = false
-
-
-local esps = {}
-function EspPlayer(plr)
-    local Esp = Drawing.new("Text")
     
-    Esp.Center = true
-    Esp.Outline = true
-    Esp.OutlineColor = Color3.fromRGB(255,255,255)
-    Esp.Font = 2
-
-    local Line = Drawing.new("Line")
-    Line.Thickness = 1.5
-    Line.Visible = false
+            Heart[#Heart + 1] = game["Run Service"].Heartbeat:Connect(function()
+                if Forward then 
+                    Player.Character:TranslateBy(Camera.CFrame.lookVector*VELOCIDADE) 
+                end 
+                if Back then 
+                    Player.Character:TranslateBy(-Camera.CFrame.lookVector*VELOCIDADE) 
+                end 
+                if Left then 
+                    Player.Character:TranslateBy(-Camera.CFrame:vectorToWorldSpace(Vector3.new(1,0,0))*VELOCIDADE) 
+                end 
+                if Right then 
+                    Player.Character:TranslateBy(Camera.CFrame:vectorToWorldSpace(Vector3.new(1,0,0))*VELOCIDADE) 
+                end 
+                if Up then Player.Character:TranslateBy(Camera.CFrame:vectorToWorldSpace(Vector3.new(0,1,0))*VELOCIDADE) 
+                end 
+                if Down then 
+                    Player.Character:TranslateBy(-Camera.CFrame:vectorToWorldSpace(Vector3.new(0,1,0))*VELOCIDADE) 
+                end  
+            end)
+            spawn(function()
+                while NC --[[Dont need "==true"]] do
+                Char=game.Players.LocalPlayer.Character
+                    Char.HumanoidRootPart.Velocity = Vector3.new(0,1.5,0)
+                    task.wait()
+                end
+            end)
+            
+        else
+            for i,v in pairs(Heart) do v:Disconnect() end
+        end
+    end)
     
-    coroutine.wrap(function()
-        loop = game:GetService("RunService").RenderStepped:Connect(function()
-            local sucess = pcall(function()
-                local Vector, OnScreen = workspace.CurrentCamera:worldToViewportPoint(plr.Character.Head.Position + Vector3.new(0, 4, 0))
-                Line.From = Vector2.new(workspace.CurrentCamera.ViewportSize.X / 2, 0)
-                Line.To = Vector2.new(Vector.X, Vector.Y)
-                local iswhite = false
-                local plrStatus = plr.leaderstats.Status
-                if plrStatus.Value == "Criminal" then
-                    Line.Color = Color3.fromRGB(130, 16, 16)
-                elseif plrStatus.Value == "Lawbreaker" then
-                    Line.Color = Color3.fromRGB(252, 107, 3)
-                elseif plrStatus.Value == "Guardian" then
-                    Line.Color = Color3.fromRGB(0, 144, 176)
-                elseif plrStatus.Value == "Protector" then
-                    Line.Color = Color3.fromRGB(201, 255, 5)
-                elseif plrStatus.Value == "Supervillain" then
-                    Line.Color = Color3.fromRGB(255,0,0)
-                elseif plrStatus.Value == "Superhero" then
-                    Line.Color = Color3.fromRGB(7, 2, 250)
-                else
-                    iswhite = true
-                    Line.Color = Color3.fromRGB(255,255,255)
-                end
-                if not iswhite then
-                    Esp.Color = Line.Color
-                else
-                    Esp.Color = Color3.fromRGB(0, 0, 0)
-                end
-                
-                local diff  = (plr.Character.Head.Position - speaker.Character.HumanoidRootPart.Position)
-
-                local num = (diff.Magnitude - (diff.Magnitude / 2))
-                if num < 0 then
-                    num = 15
-                end
-                local CustomSize = diff.Magnitude / (num)
-
-                if CustomSize < 15 then
-                    CustomSize = 15
-                end
-                if CustomSize > 18 then
-                    CustomSize = 18
-                end
-                Esp.Size = CustomSize
-
-                if OnScreen then
-                    if getgenv().espmax == true and (plr.Character.Head.Position - game.Players.LocalPlayer.Character.Head.Position).Magnitude < 150 then
-
-                        Esp.Visible = VisibleEsp
-                        Line.Visible = VisibleLine
-                    elseif getgenv().espmax == false then
-                        Esp.Visible = VisibleEsp
-                        Line.Visible = VisibleLine
+    
+    local VisibleEsp = false
+    local VisibleLine = false
+    
+    
+    local esps = {}
+    function EspPlayer(plr)
+        local Esp = Drawing.new("Text")
+        
+        Esp.Center = true
+        Esp.Outline = true
+        Esp.OutlineColor = Color3.fromRGB(255,255,255)
+        Esp.Font = 2
+    
+        local Line = Drawing.new("Line")
+        Line.Thickness = 1.5
+        Line.Visible = false
+        
+        coroutine.wrap(function()
+            loop = game:GetService("RunService").RenderStepped:Connect(function()
+                local sucess = pcall(function()
+                    local Vector, OnScreen = workspace.CurrentCamera:worldToViewportPoint(plr.Character.Head.Position + Vector3.new(0, 4, 0))
+                    Line.From = Vector2.new(workspace.CurrentCamera.ViewportSize.X / 2, 0)
+                    Line.To = Vector2.new(Vector.X, Vector.Y)
+                    local iswhite = false
+                    local plrStatus = plr.leaderstats.Status
+                    if plrStatus.Value == "Criminal" then
+                        Line.Color = Color3.fromRGB(130, 16, 16)
+                    elseif plrStatus.Value == "Lawbreaker" then
+                        Line.Color = Color3.fromRGB(252, 107, 3)
+                    elseif plrStatus.Value == "Guardian" then
+                        Line.Color = Color3.fromRGB(0, 144, 176)
+                    elseif plrStatus.Value == "Protector" then
+                        Line.Color = Color3.fromRGB(201, 255, 5)
+                    elseif plrStatus.Value == "Supervillain" then
+                        Line.Color = Color3.fromRGB(255,0,0)
+                    elseif plrStatus.Value == "Superhero" then
+                        Line.Color = Color3.fromRGB(7, 2, 250)
+                    else
+                        iswhite = true
+                        Line.Color = Color3.fromRGB(255,255,255)
+                    end
+                    if not iswhite then
+                        Esp.Color = Line.Color
+                    else
+                        Esp.Color = Color3.fromRGB(0, 0, 0)
+                    end
+                    
+                    local diff  = (plr.Character.Head.Position - speaker.Character.HumanoidRootPart.Position)
+    
+                    local num = (diff.Magnitude - (diff.Magnitude / 2))
+                    if num < 0 then
+                        num = 15
+                    end
+                    local CustomSize = diff.Magnitude / (num)
+    
+                    if CustomSize < 15 then
+                        CustomSize = 15
+                    end
+                    if CustomSize > 18 then
+                        CustomSize = 18
+                    end
+                    Esp.Size = CustomSize
+    
+                    if OnScreen then
+                        if getgenv().espmax == true and (plr.Character.Head.Position - game.Players.LocalPlayer.Character.Head.Position).Magnitude < 150 then
+    
+                            Esp.Visible = VisibleEsp
+                            Line.Visible = VisibleLine
+                        elseif getgenv().espmax == false then
+                            Esp.Visible = VisibleEsp
+                            Line.Visible = VisibleLine
+                        else
+                            Esp.Visible = false
+                            Line.Visible = false
+                        end
+                        Esp.Position = Vector2.new(Vector.X, Vector.Y)
+                        local TabRanks = {
+                            [1] = "Blue I";
+                            [2] = "Blue II";
+                            [3] = "Blue III";
+                            [4] = "Red I";
+                            [5] = "Red II";
+                            [6] = "Red III";
+                            [7] = "Yellow I";
+                            [8] = "Yellow II";
+                            [9] = "Yellow III";
+                            [10] = "Sword";
+                            [11] = "Crown"
+                        }
+                        TabRanks = TabRanks[plr.PrivateStats.Rank.Value]
+                        Esp.Text = string.format(
+                            "Nome: %s\nReputação: %s\nFirst: %s  Body: %s  Psy: %s\nTokens: %s\nRank %s",
+                            plr.Name,
+                            plr.leaderstats.Status.Value,
+                            Translate(plr.PrivateStats.FistStrength.Value),
+                            Translate(plr.PrivateStats.BodyToughness.Value),
+                            Translate(plr.PrivateStats.PsychicPower.Value),
+                            Translate(plr.PrivateStats.Token.Value),
+                            TabRanks
+                            
+                            
+                        )
                     else
                         Esp.Visible = false
                         Line.Visible = false
                     end
-                    Esp.Position = Vector2.new(Vector.X, Vector.Y)
-                    local TabRanks = {
-                        [1] = "Blue I";
-                        [2] = "Blue II";
-                        [3] = "Blue III";
-                        [4] = "Red I";
-                        [5] = "Red II";
-                        [6] = "Red III";
-                        [7] = "Yellow I";
-                        [8] = "Yellow II";
-                        [9] = "Yellow III";
-                        [10] = "Sword";
-                        [11] = "Crown"
-                    }
-                    TabRanks = TabRanks[plr.PrivateStats.Rank.Value]
-                    Esp.Text = string.format(
-                        "Nome: %s\nReputação: %s\nFirst: %s  Body: %s  Psy: %s\nTokens: %s\nRank %s",
-                        plr.Name,
-                        plr.leaderstats.Status.Value,
-                        Translate(plr.PrivateStats.FistStrength.Value),
-                        Translate(plr.PrivateStats.BodyToughness.Value),
-                        Translate(plr.PrivateStats.PsychicPower.Value),
-                        Translate(plr.PrivateStats.Token.Value),
-                        TabRanks
-                        
-                        
-                    )
+                end)
+                
+                if sucess then
+                    
                 else
                     Esp.Visible = false
                     Line.Visible = false
                 end
+                    
             end)
+            esps[#esps + 1] = {name = plr.Name; Line = Esp; Loop = loop}
+            esps[#esps + 1] = {name = plr.Name; Line = Line; Loop = loop}
             
-            if sucess then
-                
-            else
-                Esp.Visible = false
-                Line.Visible = false
+        end)()
+    end
+    function RemoveEsp(plr)
+        for i,v in pairs(esps) do
+            if v.name == plr.Name then
+                v.Loop:Disconnect()
+                v.Line:Remove()
             end
-                
-        end)
-        esps[#esps + 1] = {name = plr.Name; Line = Esp; Loop = loop}
-        esps[#esps + 1] = {name = plr.Name; Line = Line; Loop = loop}
-        
-    end)()
-end
-function RemoveEsp(plr)
-    for i,v in pairs(esps) do
-        if v.name == plr.Name then
-            v.Loop:Disconnect()
-            v.Line:Remove()
         end
     end
-end
-
-for i,v in pairs(game.Players:GetChildren()) do
-    if v ~= speaker then
-        EspPlayer(v)
-    end
-end
-
-game.Players.PlayerAdded:Connect(function(plr)
-    EspPlayer(plr)
-end)
-
-game.Players.ChildRemoved:Connect(function(plr)
-    RemoveEsp(plr)
-end)
-
-esp:CreateToggle("Info Enabled", function(bool)
-    VisibleEsp = bool
-end)
-esp:CreateToggle("Line Enabled", function(bool)
-    VisibleLine = bool
-end)
-
-getgenv().espmax = false
-esp:CreateToggle("Esp max 150", function(bool)
-    getgenv().espmax = bool
-end)
-
-local billboardguis = {}
-
-
-
-local minHealth
-
-auto_refresh:CreateTextBox("Refresh when your health is this:", function(text)
-    minHealth = tonumber(text)
-    game.StarterGui:SetCore("SendNotification", {
-
-        Title = "Sucess";
-        
-        Text = "Selected: "..Translate(tonumber(text))
-        
-        })
-end)
-
-auto_refresh:CreateButton("How much of health i have? (Click here)", function()
-    local msg = Instance.new("Message", game.CoreGui)
-    msg.Text = "You have "..Translate(game.Players.LocalPlayer.Character.Humanoid.Health) .. ' of health.\nI recommend your put: '.. Translate((game.Players.LocalPlayer.Character.Humanoid.Health / 5));
-    game.Debris:AddItem(msg, 2)
-end)
-
-auto_refresh:CreateToggle("Active", function(bool)
-    autorefresh = bool
-    if bool then
-        spawn(function()
-            while autorefresh == true do
-                repeat wait() until game.Players.LocalPlayer.Character.Humanoid.Health <= minHealth or autorefresh == false
-                if autorefresh then Refresh() end
-            end
-        end)
-    end
-end)
-
-local reputation = menu:CreateTab("Reputation")
-local whatisfarm = false
-function getReputationToVillain()
-    local player
-
-    for i,v in pairs(game.Players:GetChildren()) do
-
-        if v ~= speaker and game:GetService("Players")[v.Name].PrivateStats.Reputation.Value >= 0 and not v.Character:FindFirstChild("SafeZoneShield") then
-
-            local account = game:GetService("Players")[v.Name].PrivateStats.PsychicPower.Value < (speaker.PrivateStats.PsychicPower.Value / 5)
-
-            if account == true then
-
-                player = v
-
-            end
-
-        end
-
-    end
-
-    return player
-end
-
-function getReputationToProtector()
-    local player
-
-    for i,v in pairs(game.Players:GetChildren()) do
-
-        if v ~= speaker and game:GetService("Players")[v.Name].PrivateStats.Reputation.Value < 0 and not v.Character:FindFirstChild("SafeZoneShield") then
-
-            local account = game:GetService("Players")[v.Name].PrivateStats.PsychicPower.Value < (speaker.PrivateStats.PsychicPower.Value / 3)
-
-            if account == true then
-
-                player = v
-
-            end
-
-        end
-
-    end
-
-    return player
-end
-
-
-local whatisfarm = true
-reputation:CreateToggle("Farm reputation", function(bool)
-    reputation_farm = bool
-
-    if bool then
-        oldpos = functions.getRoot().CFrame 
-        spawn(function()
     
-            while reputation_farm do
+    for i,v in pairs(game.Players:GetChildren()) do
+        if v ~= speaker then
+            EspPlayer(v)
+        end
+    end
     
-                pcall(function()
-                    local player = (whatisfarm == true and getReputationToVillain()) or (whatisfarm == false and getReputationToProtector())
-
-                    if player and (functions.getHumanoid(player) and functions.getHumanoid(player).Health > 0) then 
-                        functions.getRoot().CFrame = functions.getRoot(player).CFrame * CFrame.new(0, 10, 0)
-                        local args = {
-                            [1] = {
-                                [1] = "Skill_SoulAttack_Start",
-                                [2] = target
+    game.Players.PlayerAdded:Connect(function(plr)
+        EspPlayer(plr)
+    end)
+    
+    game.Players.ChildRemoved:Connect(function(plr)
+        RemoveEsp(plr)
+    end)
+    
+    esp:CreateToggle("Info Enabled", function(bool)
+        VisibleEsp = bool
+    end)
+    esp:CreateToggle("Line Enabled", function(bool)
+        VisibleLine = bool
+    end)
+    
+    getgenv().espmax = false
+    esp:CreateToggle("Esp max 150", function(bool)
+        getgenv().espmax = bool
+    end)
+    
+    local billboardguis = {}
+    
+    
+    
+    local minHealth
+    
+    auto_refresh:CreateTextBox("Refresh when your health is this:", function(text)
+        minHealth = tonumber(text)
+        game.StarterGui:SetCore("SendNotification", {
+    
+            Title = "Sucess";
+            
+            Text = "Selected: "..Translate(tonumber(text))
+            
+            })
+    end)
+    
+    auto_refresh:CreateButton("How much of health i have? (Click here)", function()
+        local msg = Instance.new("Message", game.CoreGui)
+        msg.Text = "You have "..Translate(game.Players.LocalPlayer.Character.Humanoid.Health) .. ' of health.\nI recommend your put: '.. Translate((game.Players.LocalPlayer.Character.Humanoid.Health / 5));
+        game.Debris:AddItem(msg, 2)
+    end)
+    
+    auto_refresh:CreateToggle("Active", function(bool)
+        autorefresh = bool
+        if bool then
+            spawn(function()
+                while autorefresh == true do
+                    repeat wait() until game.Players.LocalPlayer.Character.Humanoid.Health <= minHealth or autorefresh == false
+                    if autorefresh then Refresh() end
+                end
+            end)
+        end
+    end)
+    
+    local reputation = menu:CreateTab("Reputation")
+    local whatisfarm = false
+    function getReputationToVillain()
+        local player
+    
+        for i,v in pairs(game.Players:GetChildren()) do
+    
+            if v ~= speaker and game:GetService("Players")[v.Name].PrivateStats.Reputation.Value >= 0 and not v.Character:FindFirstChild("SafeZoneShield") then
+    
+                local account = game:GetService("Players")[v.Name].PrivateStats.PsychicPower.Value < (speaker.PrivateStats.PsychicPower.Value / 5)
+    
+                if account == true then
+    
+                    player = v
+    
+                end
+    
+            end
+    
+        end
+    
+        return player
+    end
+    
+    function getReputationToProtector()
+        local player
+    
+        for i,v in pairs(game.Players:GetChildren()) do
+    
+            if v ~= speaker and game:GetService("Players")[v.Name].PrivateStats.Reputation.Value < 0 and not v.Character:FindFirstChild("SafeZoneShield") then
+    
+                local account = game:GetService("Players")[v.Name].PrivateStats.PsychicPower.Value < (speaker.PrivateStats.PsychicPower.Value / 3)
+    
+                if account == true then
+    
+                    player = v
+    
+                end
+    
+            end
+    
+        end
+    
+        return player
+    end
+    
+    
+    local whatisfarm = true
+    reputation:CreateToggle("Farm reputation", function(bool)
+        reputation_farm = bool
+    
+        if bool then
+            oldpos = functions.getRoot().CFrame 
+            spawn(function()
+        
+                while reputation_farm do
+        
+                    pcall(function()
+                        local player = (whatisfarm == true and getReputationToVillain()) or (whatisfarm == false and getReputationToProtector())
+    
+                        if player and (functions.getHumanoid(player) and functions.getHumanoid(player).Health > 0) then 
+                            functions.getRoot().CFrame = functions.getRoot(player).CFrame * CFrame.new(0, 10, 0)
+                            local args = {
+                                [1] = {
+                                    [1] = "Skill_SoulAttack_Start",
+                                    [2] = target
+                                }
                             }
-                        }
-                        
-                        game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
-                    end
-                end)
-
-                task.wait()
-
-            end
-    
-        end)
-
-    else
-        
-        functions.getRoot().CFrame = oldpos
-        game:GetService("ReplicatedStorage").RemoteEvent:FireServer({"Skill_SoulAttack_Stop"})
-
-    end
-end)
-
-reputation:CreateToggle("No reputation good?", function(bool)
-    whatisfarm = bool
-end)
-
-local webhook = menu:CreateTab("Web hook")
-
-local input_webhook = ''
-local input_first = false
-local input_body = false
-local input_psychic = false
-local input_delay = 1
-webhook:CreateTextBox("Webhook", function(text)
-    if string.find(text, "https") then
-        input_webhook = text
-        writefile("Webhook.txt", text)
-    else
-        functions.sendNotification("Erro", "Webhook invalido, Erro Https", 1)
-    end
-end)
-
-webhook:CreateButton("Caso ja tenha um webHook salvo, clique aqui.", function()
-    if isfile"Webhook.txt" then
-        if string.find(readfile("Webhook.txt"), "https") then
-            input_webhook = readfile("Webhook.txt")
-            functions.sendNotification("Sucess", readfile("Webhook.txt"), 1)
-        else
-            functions.sendNotification("Erro", "O Webhook salvo nao e um webhook valido.", 1)
-        end
-    else
-        functions.sendNotification("Erro", "Voce nao tem nenhum webhook salvo.", 1)
-    end
-end)
-
-webhook:CreateTextBox("Delay web hook", function(text)
-    input_delay = tonumber(text) 
-end)
-
-
-
-webhook:CreateToggle("Fist Stats", function(bool)
-    input_first = bool
-end)
-
-webhook:CreateToggle("Body Stats", function(bool)
-    input_body = bool
-end)
-
-webhook:CreateToggle("Psychic Stats", function(bool)
-    input_psychic = bool
-end)
-
-local isKick = false 
-
-game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(function()
-    isKick = true
-end)
-
-webhook:CreateToggle("Start send webhooks", function(bool)
-    webhook_spam = bool
-
-    spawn(function()
-        while webhook_spam do
-            if isKick == true then 
-                functions.sendWebHook({content = "**Alguma coisa interrompeu o script, E por isso paramos o web hook.**", username = "SPTS Stats", avatar_url = "https://tr.rbxcdn.com/4e4b55732d99c773c46a097f66390d4b/768/432/Image/Png"}, input_webhook)
-                return 
-            end
-            local data = os.date("!*t", tick())
-
-            local final = string.format("**Dia: %s, Horario: %s:%s:%s**", data.day, data.hour, data.min, data.sec)
-
-            local tab = {
-                
-                content = final,
-                username = "SPTS Stats", avatar_url = "https://tr.rbxcdn.com/4e4b55732d99c773c46a097f66390d4b/768/432/Image/Png",
-                embeds = {
-                    {
-                        title = "🎃SPTS🎃";
-                        description = "**Feito por $ samuu#7670**";
-                        color = tonumber(0x00ff00);
-
-                        fields = {
                             
+                            game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+                        end
+                    end)
+    
+                    task.wait()
+    
+                end
+        
+            end)
+    
+        else
+            
+            functions.getRoot().CFrame = oldpos
+            game:GetService("ReplicatedStorage").RemoteEvent:FireServer({"Skill_SoulAttack_Stop"})
+    
+        end
+    end)
+    
+    reputation:CreateToggle("No reputation good?", function(bool)
+        whatisfarm = bool
+    end)
+    
+    local webhook = menu:CreateTab("Web hook")
+    
+    local input_webhook = ''
+    local input_first = false
+    local input_body = false
+    local input_psychic = false
+    local input_delay = 1
+    webhook:CreateTextBox("Webhook", function(text)
+        if string.find(text, "https") then
+            input_webhook = text
+            writefile("Webhook.txt", text)
+        else
+            functions.sendNotification("Erro", "Webhook invalido, Erro Https", 1)
+        end
+    end)
+    
+    webhook:CreateButton("Caso ja tenha um webHook salvo, clique aqui.", function()
+        if isfile"Webhook.txt" then
+            if string.find(readfile("Webhook.txt"), "https") then
+                input_webhook = readfile("Webhook.txt")
+                functions.sendNotification("Sucess", readfile("Webhook.txt"), 1)
+            else
+                functions.sendNotification("Erro", "O Webhook salvo nao e um webhook valido.", 1)
+            end
+        else
+            functions.sendNotification("Erro", "Voce nao tem nenhum webhook salvo.", 1)
+        end
+    end)
+    
+    webhook:CreateTextBox("Delay web hook", function(text)
+        input_delay = tonumber(text) 
+    end)
+    
+    
+    
+    webhook:CreateToggle("Fist Stats", function(bool)
+        input_first = bool
+    end)
+    
+    webhook:CreateToggle("Body Stats", function(bool)
+        input_body = bool
+    end)
+    
+    webhook:CreateToggle("Psychic Stats", function(bool)
+        input_psychic = bool
+    end)
+    
+    local isKick = false 
+    
+    game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(function()
+        isKick = true
+    end)
+    
+    webhook:CreateToggle("Start send webhooks", function(bool)
+        webhook_spam = bool
+    
+        spawn(function()
+            while webhook_spam do
+                if isKick == true then 
+                    functions.sendWebHook({content = "**Alguma coisa interrompeu o script, E por isso paramos o web hook.**", username = "SPTS Stats", avatar_url = "https://tr.rbxcdn.com/4e4b55732d99c773c46a097f66390d4b/768/432/Image/Png"}, input_webhook)
+                    return 
+                end
+                local data = os.date("!*t", tick())
+    
+                local final = string.format("**Dia: %s, Horario: %s:%s:%s**", data.day, data.hour, data.min, data.sec)
+    
+                local tab = {
+                    
+                    content = final,
+                    username = "SPTS Stats", avatar_url = "https://tr.rbxcdn.com/4e4b55732d99c773c46a097f66390d4b/768/432/Image/Png",
+                    embeds = {
+                        {
+                            title = "🎃SPTS🎃";
+                            description = "**Feito por $ samuu#7670**";
+                            color = tonumber(0x00ff00);
+    
+                            fields = {
+                                
+                            }
+    
                         }
-
                     }
                 }
-            }
-
-            local actives = {Psy = input_psychic, Body = input_body, First = input_first}
-
-            for i,v in pairs(actives) do
-                if v then
-                    local name 
-
-                    if i == "First" then
-                        name = functions.Translate(Stats.First.Value)
+    
+                local actives = {Psy = input_psychic, Body = input_body, First = input_first}
+    
+                for i,v in pairs(actives) do
+                    if v then
+                        local name 
+    
+                        if i == "First" then
+                            name = functions.Translate(Stats.First.Value)
+                        end
+                        if i == "Body" then
+                            name = functions.Translate(Stats.Body.Value)
+                        end
+                        if i == "Psy" then
+                            name = functions.Translate(Stats.Psy.Value)
+                        end
+    
+                        name = string.format("**%s**", name)
+                        
+                        tab.embeds[1].fields[#tab.embeds[1].fields + 1] = {
+                            name = i,
+                            value = name,
+                            inline = true,
+                        }
                     end
-                    if i == "Body" then
-                        name = functions.Translate(Stats.Body.Value)
-                    end
-                    if i == "Psy" then
-                        name = functions.Translate(Stats.Psy.Value)
-                    end
-
-                    name = string.format("**%s**", name)
-                    
-                    tab.embeds[1].fields[#tab.embeds[1].fields + 1] = {
-                        name = i,
-                        value = name,
-                        inline = true,
-                    }
                 end
+    
+                functions.sendWebHook(tab,input_webhook)
+                wait(input_delay)
             end
-
-            functions.sendWebHook(tab,input_webhook)
-            wait(input_delay)
+        end)
+    end)
+    
+    local FE = menu:CreateTab("FE")
+    
+    FE:CreateToggle("Invisible", function(bool)
+        if bool then
+            oldpos = functions.getRoot().CFrame
+            functions.getRoot().CFrame = CFrame.new(-4160, 241, -3508)
+            wait(0.3)
+            functions.getCharacter().LowerTorso:Destroy()
+            wait(0.3)
+            functions.getRoot().CFrame = oldpos 
+        else
+            Refresh()
         end
     end)
-end)
-
-local FE = menu:CreateTab("FE")
-
-FE:CreateToggle("Invisible", function(bool)
-    if bool then
-        oldpos = functions.getRoot().CFrame
-        functions.getRoot().CFrame = CFrame.new(-4160, 241, -3508)
-        wait(0.3)
-        functions.getCharacter().LowerTorso:Destroy()
-        wait(0.3)
-        functions.getRoot().CFrame = oldpos 
-    else
-        Refresh()
-    end
-end)
-
-FE:CreateButton("Split body (Deixar o torso)", function()
-    local plrchr = game:GetService('Players').LocalPlayer.Character;
-    plrchr.UpperTorso.Waist:Remove()
-
-end)
-
-FE:CreateButton("Split body (Sumir com o torso", function()
-    local plrchr = game:GetService('Players').LocalPlayer.Character;
-
-    oldpos = plrchr.HumanoidRootPart.CFrame
-    plrchr.HumanoidRootPart.CFrame = CFrame.new(0, 999, 0)
-    wait(0.5)
-    plrchr.UpperTorso.Waist:Destroy()
-    wait(0.3)
-    plrchr.HumanoidRootPart.CFrame = oldpos
-end)
-
-
-
-local Others = menu:CreateTab("Others")
-
-
-Others:CreateButton("Show fps", function()
-    local Menu = Instance.new("ScreenGui", game.CoreGui)
-    Menu.Name = "FPS"
-
-    local TextLabel = Instance.new("TextLabel", Menu)
-    TextLabel.BackgroundTransparency = 1
-
-    TextLabel.TextColor3 = Color3.fromRGB(255,255,255)
-    TextLabel.Text = "FPS: 0"
-
-    TextLabel.Size = UDim2.new(0, 70, 0, 50)
-
-    TextLabel.AnchorPoint = Vector2.new(1, 0)
-
-    TextLabel.Position = UDim2.new(1,0,0,0)
-
-    TextLabel.TextScaled = true
-
-
-    local FPS = 0
-
-
-    game:GetService("RunService").Stepped:Connect(function()
-
-    FPS+=1 - (math.random() / 800)
-
+    
+    FE:CreateButton("Split body (Deixar o torso)", function()
+        local plrchr = game:GetService('Players').LocalPlayer.Character;
+        plrchr.UpperTorso.Waist:Remove()
+    
     end)
-
-
-    spawn(function()
-
-    while wait(1) do
-
-        local text = tostring(FPS)
-
-        if string.find(text, ".") then
-            text = text:split(".")[1]..'.'..string.sub(text:split(".")[2], 0, 2)
+    
+    FE:CreateButton("Split body (Sumir com o torso", function()
+        local plrchr = game:GetService('Players').LocalPlayer.Character;
+    
+        oldpos = plrchr.HumanoidRootPart.CFrame
+        plrchr.HumanoidRootPart.CFrame = CFrame.new(0, 999, 0)
+        wait(0.5)
+        plrchr.UpperTorso.Waist:Destroy()
+        wait(0.3)
+        plrchr.HumanoidRootPart.CFrame = oldpos
+    end)
+    
+    
+    
+    local Others = menu:CreateTab("Others")
+    
+    
+    Others:CreateButton("Show fps", function()
+        local Menu = Instance.new("ScreenGui", game.CoreGui)
+        Menu.Name = "FPS"
+    
+        local TextLabel = Instance.new("TextLabel", Menu)
+        TextLabel.BackgroundTransparency = 1
+    
+        TextLabel.TextColor3 = Color3.fromRGB(255,255,255)
+        TextLabel.Text = "FPS: 0"
+    
+        TextLabel.Size = UDim2.new(0, 70, 0, 50)
+    
+        TextLabel.AnchorPoint = Vector2.new(1, 0)
+    
+        TextLabel.Position = UDim2.new(1,0,0,0)
+    
+        TextLabel.TextScaled = true
+    
+    
+        local FPS = 0
+    
+    
+        game:GetService("RunService").Stepped:Connect(function()
+    
+        FPS+=1 - (math.random() / 800)
+    
+        end)
+    
+    
+        spawn(function()
+    
+        while wait(1) do
+    
+            local text = tostring(FPS)
+    
+            if string.find(text, ".") then
+                text = text:split(".")[1]..'.'..string.sub(text:split(".")[2], 0, 2)
+            end
+    
+            TextLabel.Text = string.format("FPS: %.2f", FPS)
+    
+            FPS = 0 
+    
         end
-
-        TextLabel.Text = string.format("FPS: %.2f", FPS)
-
-        FPS = 0 
-
-    end
-
+    
+        end)
     end)
+    
+    Others:CreateButton("Rejoin Server", function()
+        game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
+    end)
+    
+    Others:CreateButton("FPS boost", function()
+        local Terrain = workspace:FindFirstChildOfClass('Terrain')
+        local Lighting = game.Lighting
+        local RunService = game:GetService("RunService")
+        Terrain.WaterWaveSize = 0
+        Terrain.WaterWaveSpeed = 0
+        Terrain.WaterReflectance = 0
+        Terrain.WaterTransparency = 0
+        Lighting.GlobalShadows = false
+        Lighting.FogEnd = 9e9
+        settings().Rendering.QualityLevel = 1
+        for i,v in pairs(game:GetDescendants()) do
+            if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+                v.Material = "Plastic"
+                v.Reflectance = 0
+            elseif v:IsA("Decal") then
+                v.Transparency = 1
+            elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+                v.Lifetime = NumberRange.new(0)
+            elseif v:IsA("Explosion") then
+                v.BlastPressure = 1
+                v.BlastRadius = 1
+            end
+        end
+        for i,v in pairs(Lighting:GetDescendants()) do
+            if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+                v.Enabled = false
+            end
+        end
+        workspace.DescendantAdded:Connect(function(child)
+            coroutine.wrap(function()
+                if child:IsA('ForceField') then
+                    RunService.Heartbeat:Wait()
+                    child:Destroy()
+                elseif child:IsA('Sparkles') then
+                    RunService.Heartbeat:Wait()
+                    child:Destroy()
+                elseif child:IsA('Smoke') or child:IsA('Fire') then
+                    RunService.Heartbeat:Wait()
+                    child:Destroy()
+                end
+            end)()
+        end)
+    end)
+    
+    
 end)
-
-Others:CreateButton("Rejoin Server", function()
-    game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
-end)
-
-Others:CreateButton("FPS boost", function()
-    local Terrain = workspace:FindFirstChildOfClass('Terrain')
-    local Lighting = game.Lighting
-    local RunService = game:GetService("RunService")
-	Terrain.WaterWaveSize = 0
-	Terrain.WaterWaveSpeed = 0
-	Terrain.WaterReflectance = 0
-	Terrain.WaterTransparency = 0
-	Lighting.GlobalShadows = false
-	Lighting.FogEnd = 9e9
-	settings().Rendering.QualityLevel = 1
-	for i,v in pairs(game:GetDescendants()) do
-		if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
-			v.Material = "Plastic"
-			v.Reflectance = 0
-		elseif v:IsA("Decal") then
-			v.Transparency = 1
-		elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
-			v.Lifetime = NumberRange.new(0)
-		elseif v:IsA("Explosion") then
-			v.BlastPressure = 1
-			v.BlastRadius = 1
-		end
-	end
-	for i,v in pairs(Lighting:GetDescendants()) do
-		if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
-			v.Enabled = false
-		end
-	end
-	workspace.DescendantAdded:Connect(function(child)
-		coroutine.wrap(function()
-			if child:IsA('ForceField') then
-				RunService.Heartbeat:Wait()
-				child:Destroy()
-			elseif child:IsA('Sparkles') then
-				RunService.Heartbeat:Wait()
-				child:Destroy()
-			elseif child:IsA('Smoke') or child:IsA('Fire') then
-				RunService.Heartbeat:Wait()
-				child:Destroy()
-			end
-		end)()
-	end)
-end)
-
