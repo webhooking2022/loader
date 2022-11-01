@@ -1,7 +1,4 @@
-if not game:IsLoaded() then
-    game.Loaded:wait()
-    wait(10)
-end
+repeat wait() until game.Players.LocalPlayer and game.Loaded:wait()
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/webhooking2022/functions-library/main/.functions"))()
 repeat wait() until functions
