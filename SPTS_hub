@@ -655,18 +655,18 @@ spawn(function()
         end)
     end
 end)
-local farms = menu:CreateTab("Farms")
+local farms = menu:CreateTab("💪 Farms")
 
-local teleports = menu:CreateTab("Teleports")
-
-
+local teleports = menu:CreateTab("🌪️ Teleports")
 
 
-local aimbot = menu:CreateTab("Target")
 
-local esp = menu:CreateTab"Esp"
 
-local auto_refresh = menu:CreateTab("Auto refresh")
+local aimbot = menu:CreateTab("🎯 Target")
+
+local esp = menu:CreateTab"⭐ Esp"
+
+local auto_refresh = menu:CreateTab("😮 Auto refresh")
 local clicker = {}
 function getRoot(plr)
     plr = plr or game.Players.LocalPlayer
@@ -1652,7 +1652,7 @@ auto_refresh:CreateToggle("Active", function(bool)
     end
 end)
 
-local reputation = menu:CreateTab("Reputation")
+local reputation = menu:CreateTab("🦸‍♂️️ Reputation")
 local whatisfarm = false
 function getReputationToVillain()
     local player
@@ -1743,7 +1743,7 @@ reputation:CreateToggle("No reputation good?", function(bool)
     whatisfarm = bool
 end)
 
-local webhook = menu:CreateTab("Web hook")
+local webhook = menu:CreateTab("🌐 Web hook")
 
 local input_webhook = ''
 local input_first = false
@@ -1859,7 +1859,7 @@ webhook:CreateToggle("Start send webhooks", function(bool)
     end)
 end)
 
-local FE = menu:CreateTab("FE")
+local FE = menu:CreateTab("🔥 FE")
 
 FE:CreateToggle("Invisible", function(bool)
     if bool then
@@ -1893,7 +1893,7 @@ end)
 
 
 
-local Others = menu:CreateTab("Others")
+local Others = menu:CreateTab("🔥 Others")
 
 
 Others:CreateButton("Show fps", function()
@@ -1993,3 +1993,47 @@ Others:CreateButton("FPS boost", function()
 	end)
 end)
 
+local silent = menu:CreateTab("🎯 Silent aim")
+local R_Enabled = false
+local F_Enabled = false
+silent:CreateToggle("(R) Enabled", function(bool)
+    R_Enabled = bool
+end)
+silent:CreateToggle("(F) Enabled", function(bool)
+    F_Enabled = bool
+end)
+silent:CreateToggle("(B) Enabled (Comming soon)", function(bool)
+
+end)
+silent:CreateToggle("(G) Enabled (Comming soon)", function(bool)
+
+end)
+
+local old 
+
+local posToAim
+
+game:GetService("RunService").RenderStepped:Connect(function()
+    pcall(function()
+        posToAim = workspace[functions.getNearestToMouse(false).Name].HumanoidRootPart.Position or game.Players.LocalPlayer:GetMouse().Hit.Position
+    end)
+end)
+
+old = hookmetamethod(game, "__namecall", function(self,...)
+    local args = {...}
+    
+    if R_Enabled and getnamecallmethod() == "FireServer" and tostring(self) == "RemoteEvent" and args[1][1] == "Skill_SpherePunch" then
+
+        args[1][2] = posToAim
+        return old(self, unpack(args))
+    end
+    if F_Enabled and getnamecallmethod() == "FireServer" and tostring(self) == "RemoteEvent" and args[1][1] == "Skill_BulletPunch" then
+
+        args[1][3] = posToAim
+
+        return old(self, unpack(args))
+    end
+    
+    
+    return old(self, ...)
+end)
