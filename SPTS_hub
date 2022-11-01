@@ -50,7 +50,7 @@ game.Players.LocalPlayer.OnTeleport:Connect(function(State)
                 return "Free menu"
             end)
             ]])
-            queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/webhooking2022/Super-power-traning-simulator-SPTS-Free-script-made-by-samuu-7670/main/Super%20power%20traning%20simulator%20SPTS%20script%20made%20by%20%24%20samuu%237670%20enjoy%20use%20to%20auto%20farm%20esp%20and%20more'))()")
+            queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/webhooking2022/loader/main/SPTS_hub'))()")
         end
     end
 end)
