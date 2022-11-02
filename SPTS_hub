@@ -1905,19 +1905,37 @@ local Client = menu:CreateTab("🔥 Client")
 
 local num
 local fireball = false 
-
+local color = Color3.fromRGB(0,0,0)
+local color_enabled = false
 workspace.Storage.ChildAdded:Connect(function(child)
     if fireball then
         child.Size = Vector3.new(num, num, num)
+    end
+    if color_enabled then
+        child.Color = color 
     end
 end)
 Client:CreateTextBox("Fireball Size", function(text)
     num = tonumber(text)
 end)
 
+Client:CreateTextBox("Fire ball color", function(bool)
+    local diff = bool:split(", ")
+
+    color = Color3.fromRGB(tonumber(diff[1]), tonumber(diff[2]), tonumber(diff[3]))
+end)
+
 Client:CreateToggle("Fireball Size Active", function(bool)
     fireball = bool
 end)
+
+Client:CreateToggle("Fireball Color Active", function(bool)
+    color_enabled = bool
+end)
+
+
+
+
 
 local Others = menu:CreateTab("🔥 Others")
 
