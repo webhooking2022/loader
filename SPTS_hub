@@ -1527,11 +1527,21 @@ function EspPlayer(plr)
                 if OnScreen then
                     if getgenv().espmax == true and (plr.Character.Head.Position - game.Players.LocalPlayer.Character.Head.Position).Magnitude < 150 then
 
-                        Esp.Visible = VisibleEsp
-                        Line.Visible = VisibleLine
+                        if functions.getHumanoid(plr).Health > 0 then
+                            Esp.Visible = VisibleEsp
+                            Line.Visible = VisibleLine
+                        else
+                            Line.Visible = false
+                            Esp.Visible = false
+                        end
                     elseif getgenv().espmax == false then
-                        Esp.Visible = VisibleEsp
-                        Line.Visible = VisibleLine
+                        if functions.getHumanoid(plr).Health > 0 then
+                            Esp.Visible = VisibleEsp
+                            Line.Visible = VisibleLine
+                        else
+                            Line.Visible = false
+                            Esp.Visible = false
+                        end
                     else
                         Esp.Visible = false
                         Line.Visible = false
@@ -2005,7 +2015,7 @@ silent:CreateToggle("(F) Enabled", function(bool)
     F_Enabled = bool
 end)
 silent:CreateToggle("(B) Enabled", function(bool)
-
+    B_Enabled = bool
 end)
 silent:CreateToggle("(G) Enabled (Comming soon)", function(bool)
 
@@ -2041,7 +2051,7 @@ end
 game:GetService("UserInputService").InputBegan:Connect(function(input, ischat)
     if ischat then return end 
 
-    if input.KeyCode == Enum.KeyCode.B then
+    if input.KeyCode == Enum.KeyCode.B and B_Enabled then
         local plr = getNearest(false)
 
         if plr then
@@ -2098,7 +2108,9 @@ old = hookmetamethod(game, "__namecall", function(self,...)
     if B_Enabled and getnamecallmethod() == "FireServer" and tostring(self) == "RemoteEvent" and args[1][1] == "Skill_SoulAttack_Start" then
         if typeof(args[1][2]) == "Instance" and game:GetService("Players").LocalPlayer.PrivateStats.PsychicPower.Value < args[1][2].PrivateStats.PsychicPower.Value then
             functions.sendNotification("Error", "Psychic Difference: "..functions.Translate(math.abs(args[1][2].PrivateStats.PsychicPower.Value - game:GetService("Players").LocalPlayer.PrivateStats.PsychicPower.Value)), 5)
-            args[1][2] = game.Players.LocalPlayer
+            args[1][1] = "Skill_SoulAttack_End"
+
+            return old(self, unpack(args))
         end
     end
     
