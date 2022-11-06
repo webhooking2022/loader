@@ -36,6 +36,10 @@ end
 
 repeat wait() until sucessfully
 functions.sendNotification("Sucesso", "Sucesso", 1)
+delay(1, function()
+functions.sendNotification("Madruga e vitin", "Eu tou sem meu dc, adicionem meu novo dc ai (Copiei ele para sua area de transferencia.)", 10)
+setclipboard()
+end)
 -- Anti idle
 pcall(function()
     game.Players.LocalPlayer.Idled:Connect(function()
